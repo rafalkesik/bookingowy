@@ -29,6 +29,7 @@ export default function Home() {
               alt="Vercel logomark"
               width={16}
               height={14}
+              loading="eager"
             />
             Przetestuj
           </a>
