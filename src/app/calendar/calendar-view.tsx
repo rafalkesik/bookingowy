@@ -1,3 +1,4 @@
+// This custom calendar will probably not be used and is to be deleted.
 'use client'
 
 import getCalendarGrid from "@/lib/getCalendarGrid"

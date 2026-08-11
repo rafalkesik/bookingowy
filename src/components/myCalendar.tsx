@@ -4,27 +4,10 @@ import { Calendar, View, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { HTMLAttributes, useCallback, useState } from "react";
+import { events } from "./calendarData";
 
 const localizer = momentLocalizer(moment)
 
-const events = [
-  {
-    start: moment().toDate(),
-    end: moment()
-      .add(1, "days")
-      .toDate(),
-    title: "Booking.com"
-  },
-  {
-    start: moment()
-      .add(1, "days")
-      .toDate(),
-    end: moment()
-      .add(3, "days")
-      .toDate(),
-    title: "Airbnb"
-  }
-]
 // Used to create custom views:
 // const views = Object.values(Views);
 

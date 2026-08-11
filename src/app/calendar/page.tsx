@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CalendarView from "./calendar-view";
+// import CalendarView from "./calendar-view";
 import { MyCalendar } from "@/components/myCalendar";
 
 export const metadata: Metadata = {
