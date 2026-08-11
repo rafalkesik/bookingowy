@@ -2,7 +2,7 @@
 
 import { Calendar, View, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css"
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import { HTMLAttributes, useCallback, useState } from "react";
 
 const localizer = momentLocalizer(moment)
@@ -14,8 +14,18 @@ const events = [
       .add(1, "days")
       .toDate(),
     title: "Booking.com"
+  },
+  {
+    start: moment()
+      .add(1, "days")
+      .toDate(),
+    end: moment()
+      .add(3, "days")
+      .toDate(),
+    title: "Airbnb"
   }
 ]
+// Used to create custom views:
 // const views = Object.values(Views);
 
 export const MyCalendar = (props: HTMLAttributes<HTMLDivElement>) => {
@@ -26,7 +36,7 @@ export const MyCalendar = (props: HTMLAttributes<HTMLDivElement>) => {
   const onView = useCallback((newView: View) => setView(newView), []);
   
   return (
-    <div className="h-96 w-full" {...props}>
+    <div className="h-130 w-full" {...props}>
       <Calendar 
         localizer={localizer}
         events={events}
