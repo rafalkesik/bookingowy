@@ -24,7 +24,6 @@ export default function Home() {
             href="/calendar"
           >
             <Image
-              className="h-[14px] w-4"
               src="/vercel.svg"
               alt="Vercel logomark"
               width={16}
