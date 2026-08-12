@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { MyCalendar } from "@/components/myCalendar";
-import { hostexReservations, getRbcEvents } from "@/components/calendarData";
-import moment from "moment";
+import { getRbcEvents } from "@/lib/calendarData";
 
 export const metadata: Metadata = {
   title: "Kalendarz",

@@ -5,11 +5,11 @@ import moment from "moment";
 export async function hostexReservations() {
   let reservations: HostexReservation[] = [];
 
-  try {
-    reservations = await getReservations();
-  } catch (error) {
-    console.error("Failed to load reservations: ", error);
-  }
+    try {
+      reservations = await getReservations();
+    } catch (error) {
+      console.error("Failed to load reservations: ", error);
+    }
 
   const filteredReservations = reservations.filter(
     (reservation) => reservation.status !== "cancelled"
