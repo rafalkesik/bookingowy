@@ -1,16 +1,23 @@
 import { prisma } from "@/lib/prisma";
+import { CreateReservationSchema } from "@/validation";
+import dayjs from "dayjs";
 
 async function main() {
-  const reservation = await prisma.reservation.create({
-    data: {
+  const input = {
       name: "Bob Budowniczy",
       platform: "booking.com",
       guestAmount: 2,
-      startDate: "2026-09-12T12:00:00Z",
-      endDate: "2026-09-20T12:00:00Z",
+      startDate: dayjs("2026-09-12T12:00:00Z").toDate(),
+      endDate: dayjs("2026-09-20T12:00:00Z").toDate(),
       note: "Przemiły Pan!"
     }
+
+  const validData = CreateReservationSchema.parse(input);
+      
+  const reservation = await prisma.reservation.create({
+    data: validData
   });
+  
   console.log("Reservation created: ", reservation);
 
   const allReservations = await prisma.reservation.findMany();
