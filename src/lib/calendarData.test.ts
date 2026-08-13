@@ -1,6 +1,6 @@
 import { getRbcEvents, hostexReservations } from "./calendarData";
 import getReservations from "./reservations"
-import moment from "moment";
+import dayjs from "dayjs";
 
 jest.mock("./reservations");
 
@@ -46,8 +46,8 @@ describe("getRbcEvents", () => {
     const result = await getRbcEvents();
 
     expect(result[0]).toEqual({
-      start: moment("2027-01-01").toDate(),
-      end: moment("2027-01-07").add(1, "day").toDate(),
+      start: dayjs("2027-01-01").toDate(),
+      end: dayjs("2027-01-07").add(1, "day").toDate(),
       title: "Bob booking"
     });
   });

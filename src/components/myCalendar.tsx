@@ -1,12 +1,12 @@
 'use client'
 
-import { Calendar, View, Views, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
+import dayjs from "dayjs";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
 
-const localizer = momentLocalizer(moment)
+const localizer = dayjsLocalizer(dayjs);
 
 // Used to create custom views:
 // const views = Object.values(Views);

@@ -1,14 +1,14 @@
 import { prisma } from "@/lib/prisma";
 import { CreateReservationSchema } from "@/validation";
-import moment from "moment";
+import dayjs from "dayjs";
 
 async function main() {
   const input = {
       name: "Bob Budowniczy",
       platform: "booking.com",
       guestAmount: 2,
-      startDate: moment("2026-09-12T12:00:00Z").toDate(),
-      endDate: moment("2026-09-20T12:00:00Z").toDate(),
+      startDate: dayjs("2026-09-12T12:00:00Z").toDate(),
+      endDate: dayjs("2026-09-20T12:00:00Z").toDate(),
       note: "Przemiły Pan!"
     }
 
