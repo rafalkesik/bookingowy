@@ -4,7 +4,6 @@
   --card-width: 450px;
   --card-height: 180px;
 
-  padding: 100px 0;
   /* background: var(--background); */
 }
 
@@ -19,6 +18,10 @@
   max-width: 50%;
   margin: 0 auto 45px;
   text-align: center;
+  
+  a {
+    text-decoration: underline;
+  }
 }
 
 .timeline__wrapper {
@@ -43,6 +46,10 @@
   align-items: center;
   color: white;
   background: var(--card-color);
+}
+
+.timeline__head:hover {
+  outline: 1px solid grey;
 }
 
 .timeline__number {

@@ -1,7 +1,13 @@
 import Roadmap from "@/components/Roadmap/Roadmap";
 import Link from "next/link";
 
-export default function RoadmapPage() {
+type SearchParamProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function RoadmapPage({ searchParams }: SearchParamProps) {
+  const params = await searchParams;
+
   return (
     <div className="grey-background">
       <main className="main-class">
@@ -9,7 +15,7 @@ export default function RoadmapPage() {
           ← Powrót
         </Link>
 
-        <Roadmap />
+        <Roadmap searchParams={params} />
       </main>
     </div>
   );

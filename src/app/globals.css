@@ -19,11 +19,14 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
 }
 
-a {
-  text-decoration: underline;
-}
 a:hover {
   cursor: pointer;
+}
+
+ul {
+  text-align: start;
+  list-style: disc;
+  padding-left: 20px;
 }
 
 .grey-background {

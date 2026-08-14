@@ -1,10 +1,19 @@
 import Link from "next/link";
 import styles from "./Roadmap.module.css";
 import { colors, functionalities } from "@/lib/roadmap";
+import Modal from "@/components/Modal";
 
-export default function Roadmap() {
+type SearchParamProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function Roadmap({ searchParams }: SearchParamProps) {
+  console.log("*** searchParams.modal: ", searchParams.modal);
+
   return (
     <section className={styles.timeline}>
+      { searchParams.modal ? <Modal modalIndex={Number(searchParams.modal)}/> : "" }
+
       <h1 className={styles.timeline__title}>
         Roadmapa aplikacji
       </h1>
@@ -21,27 +30,34 @@ export default function Roadmap() {
             console.log("mapowanie index: ", index);
 
             return (
-            <div
-              className={styles.timeline__card}
-              style={{ "--card-color": colors[index % colors.length] } as React.CSSProperties}
-            >
-              <div className={styles.timeline__head}>
-                <div className={styles.timeline__number}>
-                  <span>{ index < 10 ? "0"+index : index }</span>
+              <div
+                className={styles.timeline__card}
+                style={{ "--card-color": colors[index % colors.length] } as React.CSSProperties}
+              >
+                <div className={styles.timeline__head}>
+                  <div className={styles.timeline__number}>
+                    <span>{ index < 10 ? "0"+index : index }</span>
+                  </div>
+                  <h2 className={styles.timeline__heading}>
+                    <span>{functionality.subtitle}</span>
+                    {functionality.title}
+                  </h2>
                 </div>
-
-                <h2 className={styles.timeline__heading}>
-                  <span>{functionality.subtitle}</span>
-                  {functionality.title}
-                </h2>
+                <div className={styles.timeline__body}>
+                  <p>
+                    {functionality.body}
+                  </p>
+                  { functionality.mustHave ?
+                    <Link
+                      className="flex mx-auto text-sm h-7 items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 md:w-40"
+                      href={`/roadmap?modal=${index}`}
+                      scroll={false}
+                    >
+                      Czytaj więcej
+                    </Link> : ""
+                  } 
+                </div>
               </div>
-
-              <div className={styles.timeline__body}>
-                <p>
-                  {functionality.body}
-                </p>
-              </div>
-            </div>
             )
           })
         }
