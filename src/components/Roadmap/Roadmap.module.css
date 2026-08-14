@@ -48,10 +48,6 @@
   background: var(--card-color);
 }
 
-.timeline__head:hover {
-  outline: 1px solid grey;
-}
-
 .timeline__number {
   margin: 15px;
   padding: 10px;
