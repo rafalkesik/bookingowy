@@ -1,11 +1,12 @@
 // To be fixed
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between pt-15 pb-60 px-16 bg-white sm:items-start">
+    <div className="grey-background">
+      <main className="main-class justify-around">
         <span className="text-3xl font-bold text-amber-600">
           Bookingowy.pl
         </span>
@@ -21,7 +22,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
+          <Link
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] md:w-[158px]"
             href="/calendar"
           >
@@ -33,13 +34,13 @@ export default function Home() {
               loading="eager"
             />
             Przetestuj
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] md:w-[160px]"
-            href="/"
+          </Link>
+          <Link
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 md:w-40"
+            href="/roadmap"
           >
             Poczytaj więcej
-          </a>
+          </Link>
         </div>
       </main>
     </div>
