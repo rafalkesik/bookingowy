@@ -18,9 +18,11 @@ export default function Modal({ modalIndex }: { modalIndex: number }) {
               { functionalities[modalIndex].mustHave?.map((point) => <li>{point}</li>) }
             </ul>
 
-            <h2 className="text-start font-bold mt-5 text-gray-800">Nice-to-have:</h2>
+            { functionalities[modalIndex].niceToHave ?
+              <h2 className="text-start font-bold mt-5 text-gray-800">Nice-to-have:</h2> : ""
+            }
             <ul className="text-gray-600">
-              { functionalities[modalIndex].mustHave?.map((point) => <li>{point}</li>) }
+              { functionalities[modalIndex].niceToHave?.map((point) => <li>{point}</li>) }
             </ul>
           </div>
           <div className="flex justify-center mt-4">
