@@ -3,8 +3,6 @@
   --timeline: #bdbdbd;
   --card-width: 450px;
   --card-height: 180px;
-
-  /* background: var(--background); */
 }
 
 .timeline__title {
@@ -15,7 +13,7 @@
 }
 
 .timeline__leader {
-  max-width: 50%;
+  max-width: 100%;
   margin: 0 auto 45px;
   text-align: center;
   
@@ -27,8 +25,10 @@
 .timeline__wrapper {
   position: relative;
   margin: 0 auto;
-
   display: grid;
+  gap: 20px;
+  background-color: #f7f7f7;
+  padding: 10px;
 }
 
 .timeline__card {
@@ -36,9 +36,9 @@
   z-index: 2;
   display: block;
   height: var(--card-height);
-  
-  /* margin: 10px auto 80px */
   margin: 10px auto;
+  padding: 5px;
+  font-size: 15;
 }
 
 .timeline__head {
@@ -62,9 +62,13 @@
   padding-bottom: 6px;
   font-size: 1.3rem;
   font-weight: 400;
-  line-height: 1rem;
+  line-height: 1.2rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
 }
 
 .timeline__heading span {
@@ -76,7 +80,7 @@
 .timeline__body {
   padding: 15px;
   background: white;
-  /* border: 1px solid rgba(191, 191, 191, 0.4); */
+  border: 1px solid rgba(191, 191, 191, 0.4);
   border-top: 0;
 }
 
@@ -93,8 +97,10 @@
 
 @media (min-width: 480px) {
   .timeline__card {
-    max-width: 60%;
+    max-width: 90%;
     box-shadow: 0 1px 22px 4px rgb(0 0 0 / 7%);
+    padding: 5px;
+    font-size: 15;
   }
 
   .timeline__heading {
@@ -108,23 +114,39 @@
 }
 
 @media (min-width: 720px) {
+  .timeline__wrapper {
+    gap: 30px;
+  }
+  
   .timeline__card {
-    max-width: 40%;
+    max-width: 60%;
   }
 }
 
 @media (min-width: 1000px) {
+  .timeline {
+    margin: 0 auto;
+  }
+
   .timeline__wrapper {
     grid-template-columns: 450px 450px ;
     column-gap: 0px;
     row-gap: 45px;
-    width: 1170px;
+    width: 900px;
     justify-content: center;
     padding-bottom: 100px;
   }
 
+  .timeline__leader {
+    max-width: 70%;
+  }
+
   .timeline__card {
     max-width: 90%; 
+  }
+
+  .timeline__heading {
+    padding: 5px;
   }
 
   .timeline__card:nth-child(even) {
@@ -217,4 +239,3 @@
     right: 422px;
   }
 }
-/* here should be pasted the untitled-1 part */

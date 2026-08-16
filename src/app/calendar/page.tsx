@@ -14,8 +14,8 @@ export default async function CalendarPage() {
   console.log("Załadowano eventów: ", rbcEvents.length);
 
   return (
-    <div className="grey-background">
-      <main className="flex flex-1 w-full max-w-5xl flex-col items-center gap-10 pt-15 pb-32 px-16 bg-white sm:items-start">
+    <div className="page-background">
+      <main className="main-calendar-class">
         <Link href="/" className="text-zinc-600">
           ← Powrót
         </Link>

@@ -19,7 +19,7 @@ export const MyCalendar = ({ events }: { events: RbcReservation[]}) => {
   const onView = useCallback((newView: View) => setView(newView), []);
 
   return (
-    <div className="h-130 w-full">
+    <div className="calendar-container">
       <Calendar 
         localizer={localizer}
         events={events}

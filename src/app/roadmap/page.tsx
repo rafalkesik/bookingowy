@@ -9,7 +9,7 @@ export default async function RoadmapPage({ searchParams }: SearchParamProps) {
   const params = await searchParams;
 
   return (
-    <div className="grey-background">
+    <div className="page-background">
       <main className="main-class">
         <Link href="/" className="text-zinc-600">
           ← Powrót
