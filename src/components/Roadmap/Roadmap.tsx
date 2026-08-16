@@ -33,6 +33,7 @@ export default function Roadmap({ searchParams }: SearchParamProps) {
               <div
                 className={styles.timeline__card}
                 style={{ "--card-color": colors[index % colors.length] } as React.CSSProperties}
+                key={"card-" + index}
               >
                 <div className={styles.timeline__head}>
                   <div className={styles.timeline__number}>
