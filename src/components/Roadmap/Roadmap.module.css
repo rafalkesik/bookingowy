@@ -1,0 +1,241 @@
+.timeline {
+  --background: #f7f7f7;
+  --timeline: #bdbdbd;
+  --card-width: 450px;
+  --card-height: 180px;
+}
+
+.timeline__title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+.timeline__leader {
+  max-width: 100%;
+  margin: 0 auto 45px;
+  text-align: center;
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+.timeline__wrapper {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+
+.timeline__card {
+  position: relative;
+  z-index: 2;
+  display: block;
+  height: var(--card-height);
+  margin: 10px auto;
+  padding: 5px;
+  font-size: 15;
+}
+
+.timeline__head {
+  display: flex;
+  align-items: center;
+  color: white;
+  background: var(--card-color);
+}
+
+.timeline__number {
+  margin: 15px;
+  padding: 10px;
+  font-size: 35px;
+  line-height: 35px;
+  font-weight: 600;
+  background: rgb(0 0 0 / 17%);
+}
+
+.timeline__heading {
+  margin: 0;
+  padding-bottom: 6px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+}
+
+.timeline__heading span {
+  display: block;
+  margin: 0;
+  font-size: 0.6rem;
+}
+
+.timeline__body {
+  padding: 15px;
+  background: white;
+  border: 1px solid rgba(191, 191, 191, 0.4);
+  border-top: 0;
+}
+
+.timeline__body p {
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.timeline__body img {
+  display: block;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .timeline__card {
+    width: 70%;
+    box-shadow: 0 1px 22px 4px rgb(0 0 0 / 7%);
+    padding: 5px;
+    font-size: 15;
+  }
+
+  .timeline__heading {
+    font-size: 165%;
+    line-height: 1.5rem;
+  }
+
+  .timeline__heading span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 720px) {
+  .timeline__wrapper {
+    gap: 30px;
+  }
+  
+  .timeline__card {
+    width: 70%; 
+  }
+}
+
+@media (min-width: 1000px) {
+  .timeline {
+    margin: 0 auto;
+  }
+
+  .timeline__wrapper {
+    grid-template-columns: 450px 450px ;
+    column-gap: 0px;
+    row-gap: 45px;
+    width: 900px;
+    justify-content: center;
+    padding-bottom: 100px;
+  }
+
+  .timeline__leader {
+    max-width: 70%;
+  }
+
+  .timeline__card {
+    width: 85%;
+  }
+
+  .timeline__heading {
+    padding: 5px;
+  }
+
+  .timeline__card:nth-child(even) {
+    top: 120px;
+  }
+
+  .timeline__wrapper::after {
+    content: "";
+    position: absolute;
+    z-index: 3;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    border-left: 1px solid var(--timeline);
+  }
+
+  /*
+   * Timeline markers
+   */
+  .timeline__card:nth-child(odd)::after,
+  .timeline__card:nth-child(even)::after {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    top: 26px;
+
+    border-radius: 50%;
+
+    background: var(--timeline);
+
+    box-shadow: 0 0 2px 8px var(--background);
+  }
+
+   /*
+   * Arrow for left-side cards
+   */
+  .timeline__card:nth-child(odd)::before {
+    left: 100%;
+
+    border-left: 15px solid var(--card-color);
+  }
+
+  /*
+   * Arrow for right-side cards
+   */
+  .timeline__card:nth-child(even)::before {
+    right: 100%;
+
+    border-right: 15px solid var(--card-color);
+  }
+
+  /*
+   * Arrow
+   */
+  .timeline__card:nth-child(odd)::before,
+  .timeline__card:nth-child(even)::before {
+    content: "";
+
+    position: absolute;
+    top: 20px;
+
+    width: 0;
+    height: 0;
+
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  }
+
+  /*
+   * Marker for left-side cards.
+   *
+   * Card width: 450px
+   * Half outer margin: 45px
+   * Marker half width: 4.5px
+   */
+  .timeline__card:nth-child(odd)::after {
+    left: 412px;
+  }
+
+  /*
+   * Marker for right-side cards.
+   */
+  .timeline__card:nth-child(even)::after {
+    right: 411px;
+  }
+}
