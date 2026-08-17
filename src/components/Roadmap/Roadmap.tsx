@@ -50,7 +50,7 @@ export default function Roadmap({ searchParams }: SearchParamProps) {
                   </p>
                   { functionality.mustHave ?
                     <Link
-                      className="flex mx-auto text-sm h-7 items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 md:w-40"
+                      className="secondary-button-sm"
                       href={`/roadmap?modal=${index}`}
                       scroll={false}
                     >

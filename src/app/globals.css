@@ -161,7 +161,7 @@ ul {
 
 .secondary-button {
   display: flex;
-  height: 48px;
+  padding: 11 0;
   width: 200px;
   align-items: center;
   justify-content: center;
@@ -173,6 +173,25 @@ ul {
 
   @media (max-width: 720px) {
     width: 90%;
+  }
+}
+
+.secondary-button-sm {
+  display: flex;
+  padding: 3 0;
+  font-size: 12;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid rgba(100, 100, 100, 0.6);
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    padding: 10 0;
   }
 }
 
