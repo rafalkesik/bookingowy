@@ -220,9 +220,3 @@ ul {
       font-size: 13px;
     }
   }
-
-  @media (max-width: 1000px) {
-    .calendar-container {
-      width: 700px;
-    }
-  }
