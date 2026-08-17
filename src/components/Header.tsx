@@ -6,7 +6,7 @@ export default function Header() {
       <Link href="/" className="logo-class">
         Bookingowy.pl
       </Link>
-      <Link href="/" className="text-lg underline">
+      <Link href="/sign-in" className="text-lg underline">
         Zaloguj
       </Link>
     </div>
