@@ -15,14 +15,18 @@ export default function Modal({ modalIndex }: { modalIndex: number }) {
             
             <h2 className="text-start font-bold mt-5 text-gray-800">Must-have:</h2>
             <ul className="text-gray-600 font-medium">
-              { functionalities[modalIndex].mustHave?.map((point) => <li>{point}</li>) }
+              { functionalities[modalIndex].mustHave?.map(
+                  (point, index) => <li key={"must_have_" + index}>{point}</li>)
+              }
             </ul>
 
             { functionalities[modalIndex].niceToHave ?
               <h2 className="text-start font-bold mt-5 text-gray-800">Nice-to-have:</h2> : ""
             }
             <ul className="text-gray-600">
-              { functionalities[modalIndex].niceToHave?.map((point) => <li>{point}</li>) }
+              { functionalities[modalIndex].niceToHave?.map(
+                  (point, index) => <li key={"nice_to_have_" + index}>{point}</li>)
+              }
             </ul>
           </div>
           <div className="flex justify-center mt-4">
