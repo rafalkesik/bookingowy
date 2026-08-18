@@ -1,4 +1,4 @@
-import { getUser, isLoggedIn } from "@/lib/session";
+import { getUser, isLoggedIn } from "@/lib/auth/session";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
 
