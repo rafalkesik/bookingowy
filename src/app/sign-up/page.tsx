@@ -17,6 +17,7 @@ export default function SignUpPage () {
       { 
         onSuccess: () => {
           router.push("/");
+          router.refresh();
         },
         onError: (ctx) => {
           console.log("Error while signing-up: ", ctx.error, ctx.error.message);
