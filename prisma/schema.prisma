@@ -33,7 +33,7 @@ model User {
 	role String?
 	banned Boolean?
 	banReason String?
-	banexpires DateTime?
+	banExpires DateTime?
 	createdAt DateTime
 	updatedAt DateTime
 	@@map("user")

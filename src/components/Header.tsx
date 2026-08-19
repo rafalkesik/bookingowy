@@ -1,17 +1,21 @@
 import { getUser, isLoggedIn } from "@/lib/auth/session";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
+import { NavLinks } from "./NavLinks";
 
 
 export default async function Header() {
   const loggedIn = await isLoggedIn();
   const user = await getUser();
+  const isAdmin = user?.role === "admin";
 
   return (
     <div className="bg-zinc-50 py-7 px-35 flex justify-between items-baseline ">
       <Link href="/" className="logo-class">
         Bookingowy.pl
       </Link>
+
+      <NavLinks isAdmin={isAdmin}/>
       
       {
         loggedIn ?
@@ -21,7 +25,7 @@ export default async function Header() {
           </div>
           <SignOutButton />
         </div> :        
-        <Link href="/sign-in" className="text-lg underline">
+        <Link href="/sign-in" className="underline">
           Zaloguj
         </Link>
       }

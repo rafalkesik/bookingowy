@@ -1,7 +1,6 @@
 import { cache } from "react";
 import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
-import { User } from "better-auth";
 
 export const getSession = cache(async () => {
   try {
@@ -19,10 +18,7 @@ export async function isLoggedIn(): Promise<boolean> {
   return !!session;
 }
 
-export async function getUser(): Promise<User | null> {
+export async function getUser() {
   const session = await getSession();
-  
-  return (
-    session ? session?.user : null
-  )
+  return ( session?.user ?? null )
 }
