@@ -9,21 +9,21 @@ export function NavLinks({ isAdmin }: {isAdmin: boolean}) {
   ];
   const adminNavLinksList = [
     {name: "Mój kalendarz", link: "/my-calendar"},
-    {name: "Panel admina", link: "/admin"},
+    {name: "Panel admina", link: "/admin/users"},
   ]
   isAdmin ? navLinksList.push(...adminNavLinksList) : ""
 
   return (
     <div id="nav-links" className="flex flex-1 flex-row gap-5 ml-10 text-zinc-600">
       { navLinksList.map((navElement, index) => (
-        <>
+        <div key={"navLink_" + index} className="flex flex-row gap-5">
           <Link
             href={navElement.link}
             className={(usePathname() === navElement.link) ? "text-black border-b" : ""}>
             {navElement.name}
           </Link>
           { index+1 < navLinksList.length ? <div>|</div> : "" }
-        </>
+        </div>
       )) }
     </div>
   );
