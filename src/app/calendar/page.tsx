@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CalendarComponent } from "@/components/MyCalendar";
+import { CalendarComponent } from "@/components/CalendarComponent";
 import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 
