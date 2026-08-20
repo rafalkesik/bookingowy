@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const getSession = cache(async () => {
   try {
@@ -20,5 +21,10 @@ export async function isLoggedIn(): Promise<boolean> {
 
 export async function getUser() {
   const session = await getSession();
-  return ( session?.user ?? null )
+  return (session?.user ?? null);
+}
+
+export async function verifyAdmin() {
+  const user = await getUser();
+  return (user?.role === "admin");
 }

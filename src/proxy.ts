@@ -8,12 +8,12 @@ export async function proxy(request: NextRequest) {
   })
 
   if (!session) {
-    return NextResponse.redirect("/sign-in")
+    return NextResponse.redirect(new URL("/sign-in",request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  // matcher: [""], // Specify the routes the middleware applies to
-}
+  matcher: [], // Specify the routes the middleware applies to
+};

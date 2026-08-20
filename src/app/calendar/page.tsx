@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { MyCalendar } from "@/components/MyCalendar";
-import { getRbcEvents } from "@/lib/calendarData";
+import { CalendarComponent } from "@/components/MyCalendar";
+import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: "Kalendarz rezerwacji z widokiem sprzątania, dostaw prania.",
 };
 
-export default async function CalendarPage() {
-  const rbcEvents = await getRbcEvents();
+export default function CalendarPage() {
+  const rbcEvents = SampleRbcEvents;
 
   console.log("Załadowano eventów: ", rbcEvents.length);
 
@@ -22,7 +22,7 @@ export default async function CalendarPage() {
         <p className="font-semibold">
           Lorem ipsum
         </p>
-        <MyCalendar events={rbcEvents}/>
+        <CalendarComponent events={rbcEvents}/>
       </main>
     </div>
   )

@@ -9,12 +9,12 @@ const functionalities = [
   {
     subtitle: "funkcjonalność",
     title: "Logowanie",
-    body: "Dodać system logowania, aby dane z Hostex były bezpieczne.",
+    body: "✅ Dodać system logowania, aby dane z Hostex były bezpieczne.",
     mustHave: [
       "✅ Dodać header z linkiem do logowania",
       "✅ Dodać system logowania, i zarządzania kontami dla admina.",
-      "Dodać przycisk przejścia do Mojego Kalendarza po zalogowaniu",
-      "Pozostawić demo kalendarza i roadmapę jako publiczne."
+      "✅ Dodać przycisk przejścia do Mojego Kalendarza po zalogowaniu",
+      "✅ Pozostawić demo kalendarza i roadmapę jako publiczne."
     ]
   },
   {
