@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <div className="page-background">
       <main className="main-class">
-        <span className="logo-class">
-          Bookingowy.pl
-        </span>
+        
         <div className="landing-page-container">
           <h1 className="hero-text">
             Zdobądź kontrolę nad wyposażeniem Twojego lokalu.

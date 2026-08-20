@@ -11,7 +11,7 @@ const localizer = dayjsLocalizer(dayjs);
 // Used to create custom views:
 // const views = Object.values(Views);
 
-export const MyCalendar = ({ events }: { events: RbcReservation[]}) => {
+export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH)
 
