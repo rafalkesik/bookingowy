@@ -1,4 +1,4 @@
-import { CalendarComponent } from "@/components/MyCalendar";
+import { CalendarComponent } from "@/components/CalendarComponent";
 import { verifyAdmin } from "@/lib/auth/session";
 import { getRbcEvents } from "@/lib/calendarData";
 import { Metadata } from "next";
