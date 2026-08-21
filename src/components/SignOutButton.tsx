@@ -9,8 +9,14 @@ export default function SignOutButton() {
   async function handleSignOut () {
     authClient.signOut({
       fetchOptions: {
-        onSuccess: () => router.refresh(),
-        onError: () => router.refresh(),
+        onSuccess: () => {
+          router.push('/');
+          router.refresh();
+        },
+        onError: () => {
+          router.push('/');
+          router.refresh();
+        },
       }
     });
   }
