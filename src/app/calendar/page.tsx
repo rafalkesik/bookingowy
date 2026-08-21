@@ -4,8 +4,8 @@ import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Kalendarz",
-  description: "Kalendarz rezerwacji z widokiem sprzątania, dostaw prania.",
+  title: "Bookingowy | Demo kalendarza",
+  description: "Przetestuj aplikację Bookingowy na testowych danych. Zarządzaj sprzątaniami i dostawami prania automatycznie.",
 };
 
 export default function CalendarPage() {

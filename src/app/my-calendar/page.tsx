@@ -2,11 +2,11 @@ import { CalendarComponent } from "@/components/CalendarComponent";
 import { verifyAdmin } from "@/lib/auth/session";
 import { getRbcEvents } from "@/lib/calendarData";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Mój kalendarz"
+  title: "Bookingowy | Mój kalendarz",
+  description: "Przeglądaj twój kalendraz zintegrowany z Hostex. Zarządzaj sprzątaniami i dostawami prania."
 }
 
 export default async function MyCalendar() {

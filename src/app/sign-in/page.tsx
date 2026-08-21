@@ -1,32 +1,13 @@
-'use client'
-
 import Link from "next/link";
-import { authClient } from "@/lib/auth/auth-client";
-import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+import SignInForm from "@/components/SignInForm";
+
+export const metadata: Metadata = {
+  title: "Bookingowy | Zaloguj",
+  description: "Zaloguj się do Bookingowy.pl - aplikacji do zarządzania wyposażeniem, sprzątaniem i praniem w lokalach na wynajem krótkoterminowy."
+}
 
 export default function SignInPage() {
-  const router = useRouter();
-
-  async function handleSignIn(formData: FormData) {
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    await authClient.signIn.email(
-      { email, password },
-      {
-        onSuccess: (ctx) => {
-          console.log("Signed in successfuly: ", ctx.data);
-          router.push("/");
-          router.refresh();
-        },
-        onError(ctx) {
-          console.log("Error while signing in: ", ctx.error, ctx.error.message);
-          alert(ctx.error.message);
-        },
-      },
-    );
-  }
-
   return (
     <div className="page-background">
       <main className="main-class">
@@ -36,30 +17,7 @@ export default function SignInPage() {
 
         <h1 className="hero-text">Zaloguj się</h1>
 
-        <form action={handleSignIn} className="form">
-          <label htmlFor="email">E-mail:</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="block mb-3"
-          />
-          <label htmlFor="password">Hasło:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            className="block mb-3"
-          />
-          <button
-            type="submit"
-            className="main-button mx-auto"
-          >
-            Zaloguj
-          </button>
-        </form>
+        <SignInForm />
 
         <div>
           <span>Nie masz konta? </span>
