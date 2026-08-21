@@ -20,7 +20,7 @@ const functionalities = [
   {
     subtitle: "Publikacja",
     title: "Wyjście na produkcję",
-    body: "Wypuścić projekt na produkcję."
+    body: "✅ Wypuścić projekt na produkcję."
   },
   {
     subtitle: "funkcjonalnosć",
