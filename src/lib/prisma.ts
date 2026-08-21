@@ -2,10 +2,10 @@ import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../../generated/prisma/client";
 
-const connectionString = `${process.env.POSTGRESQL_PRISMA_DATABASE_URL}`;
+const connectionString = `${process.env.DATABASE_URL}`;
 if (!connectionString) {
   throw new Error(
-  "POSTGRESQL_DATABASE_URL environment variable is not set"
+  "DATABASE_URL environment variable is not set"
   )
 }
 
