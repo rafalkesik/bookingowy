@@ -22,7 +22,7 @@ export default function SignOutButton() {
   }
 
   return(
-    <button onClick={handleSignOut} className="underline cursor-pointer">
+    <button onClick={handleSignOut} className="sign-out-button">
       Wyloguj
     </button>
   );

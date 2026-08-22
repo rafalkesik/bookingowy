@@ -154,7 +154,6 @@ form input {
     font-size: xx-large;
     font-weight: bold;
     color: rgb(217 119 6);
-    margin: 0 0 15 20;
   }
 
   .action-buttons {
@@ -240,6 +239,99 @@ form input {
 
   .form input {
     width: 100%;
+  }
+
+  .navLinks {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    /* gap: 20; */
+    margin: 0 40;
+    color: rgb(82, 82, 92);
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .navLink {
+    width: 130;
+    border-right: 1 solid black;
+    margin-right: 20;
+  }
+
+  .navLink:last-of-type {
+    margin-right: 0;
+    border: none;
+  }
+
+  .navbar:has(.checkbox:checked) {
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      gap: 20;
+      font-size: larger;
+    }
+  }
+
+  .navbar:has(.checkbox:checked) .navLinks {
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .navbar:has(.checkbox:checked) .navLink {
+    @media (max-width: 1000px) {
+      border-right: none;
+      margin-bottom: 20;
+      width: 150;
+      padding-top: 20;
+    }
+  }
+
+  .navbar:has(.checkbox:checked) .navLink a {
+    @media (max-width: 1000px) {
+      border-bottom: none;
+      padding-bottom: 20;
+      padding-top: 20;
+      border-bottom: 1 solid black;
+    }
+  }
+
+  .checkbox:checked ~ .hamburger-label {
+    cursor: pointer;
+  }
+
+  .loggedUserClass {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .hamburger-label {    
+    display: none;
+
+    @media (max-width: 1000px) {
+      display: block;
+      padding: 5
+    }
+  }
+
+  .hamburger-label:hover {
+    outline: 1 solid grey;
+  }
+
+  .sign-out-button {
+    cursor: pointer;
+    font-weight: 600;
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .navbar:has(.checkbox:checked) .sign-out-button {
+    @media (max-width: 1000px) {
+      display: block;
+    }
   }
 
 /* react-big-calendar classes changes: */
