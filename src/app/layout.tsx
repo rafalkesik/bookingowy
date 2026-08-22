@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bookingowy.pl",
+  title: "Bookingowy",
   description: "Strona do zarządzania wyposażeniem, sprzątaniem i praniem w lokalach na wynajem krótkoterminowy.",
 };
 

@@ -4,25 +4,34 @@ import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Kalendarz",
-  description: "Kalendarz rezerwacji z widokiem sprzątania, dostaw prania.",
+  title: "Bookingowy | Demo kalendarza",
+  description: "Przetestuj aplikację Bookingowy na testowych danych. Zarządzaj sprzątaniami i dostawami prania automatycznie.",
 };
 
 export default function CalendarPage() {
   const rbcEvents = SampleRbcEvents;
 
-  console.log("Załadowano eventów: ", rbcEvents.length);
+  console.log("Amount of test reservations loaded:", rbcEvents.length);
 
   return (
     <div className="page-background">
       <main className="main-calendar-class">
-        <Link href="/" className="text-zinc-600">
+        <Link href="/" className="text-zinc-600 mb-10">
           ← Powrót
         </Link>
-        <p className="font-semibold">
-          Lorem ipsum
+        <h1 className="hero-text mb-10">
+          Testowy kalendarz
+        </h1>
+        <CalendarComponent events={rbcEvents} />
+        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O aplikacji</h2>
+        <p className="paragraph">
+          Kalendarz umożliwia wyświetlenie wszystkich rezerwacji
+          w jednym miejscu.
         </p>
-        <CalendarComponent events={rbcEvents}/>
+        <p className="paragraph mt-2">
+          Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
+          oraz planowanie sprzątań i dostaw prania.
+        </p>
       </main>
     </div>
   )

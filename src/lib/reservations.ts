@@ -1,7 +1,7 @@
 const hostexApiToken = process.env.HOSTEX_API_TOKEN;
 
 export default async function getReservations() {
-  console.log("getReservations() called");
+  console.log("Attempting to fetch reservations from Hostex...");
   
   if (!hostexApiToken) {
     throw new Error("Missing HOSTEX_API_TOKEN environment variable");
@@ -24,6 +24,7 @@ export default async function getReservations() {
 
   const parsedResponse = await response.json();
   const reservations = parsedResponse?.data?.reservations.reverse();
+  console.log("Reservations fetched successfuly");
 
   return reservations;
 }

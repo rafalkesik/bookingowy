@@ -8,7 +8,7 @@ export default function Home() {
     <div className="page-background">
       <main className="main-class">
         
-        <div className="landing-page-container">
+        <div className="landing-page-container pb-10">
           <h1 className="hero-text">
             Zdobądź kontrolę nad wyposażeniem Twojego lokalu.
           </h1>
