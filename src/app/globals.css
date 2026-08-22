@@ -147,12 +147,6 @@ form input {
     }
   }
 
-  .logo-class {
-    font-size: xx-large;
-    font-weight: bold;
-    color: rgb(217 119 6);
-  }
-
   .action-buttons {
     display: flex;
     flex-direction: row;
@@ -238,11 +232,17 @@ form input {
     width: 100%;
   }
 
+/* Header, navigation styles */
+  .logo-class {
+    font-size: xx-large;
+    font-weight: bold;
+    color: rgb(217 119 6);
+  }
+
   .navLinks {
     display: flex;
     flex: 1;
     flex-direction: row;
-    /* gap: 20; */
     margin: 0 40;
     color: rgb(82, 82, 92);
     @media (max-width: 1000px) {

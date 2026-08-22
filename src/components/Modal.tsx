@@ -4,7 +4,7 @@ import { functionalities } from "@/lib/roadmap"
 export default function Modal({ modalIndex }: { modalIndex: number }) {
   return (
     <div className="z-4 fixed inset-0 bg-gray-600/10 overflow-y-auto h-full w-full rounded-xl flex items-center justify-center">
-      <div className="p-8 border w-160 shadow-lg rounded-md bg-white">
+      <div className="p-8 border w-160 mx-5 shadow-lg rounded-md bg-white">
         <div className="text-center">
           <h3 className="text-[13px]">{ functionalities[modalIndex].subtitle.toUpperCase() }</h3>
           <h1 className="text-2xl font-bold text-gray-900">{ functionalities[modalIndex].title.toUpperCase() }</h1>
