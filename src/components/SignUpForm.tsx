@@ -27,7 +27,7 @@ export default function SignUpForm() {
   }
 
   return (
-    <form action={handleSignUp} className="form">
+    <form action={handleSignUp} className="form mx-auto md:mx-10">
       <label htmlFor="name">Nazwa użytkownika</label>
       <input
         id="name"
@@ -54,7 +54,7 @@ export default function SignUpForm() {
       />
       <button
         type="submit"
-        className="main-button mx-auto"
+        className="main-button mx-auto mt-5"
       >
         Zarejestruj
       </button>

@@ -8,6 +8,10 @@
   --colored-text: rgb(217, 119, 6);
 }
 
+@theme {
+  --breakpoint-md: 720px;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -77,13 +81,8 @@ form input {
     width: 100%;
     max-width: 81rem;
     flex-direction: column;
-    gap: 60px;
     padding: 60 40 128;
     background-color: white;
-
-    @media (max-width: 720px) {
-      gap: 2.5rem;
-    }
   }
 
   .main-calendar-class {
@@ -92,7 +91,6 @@ form input {
     width: 100%;
     max-width: 64rem;
     flex-direction: column;
-    gap: 2.5rem;
     padding: 60 52 128;
     background-color: white;
 
@@ -135,7 +133,6 @@ form input {
 
     @media (max-width: 720px) {
       text-align: center;
-      max-width: 512px;
     }
   }
 
@@ -295,6 +292,16 @@ form input {
       padding-top: 20;
       border-bottom: 1 solid black;
     }
+  }
+
+  .login-button {
+    @media (max-width: 1000px) {
+      display: none
+    }
+  }
+
+  .navbar:has(.checkbox:checked) .login-button {
+    display: block;
   }
 
   .checkbox:checked ~ .hamburger-label {

@@ -11,15 +11,15 @@ export default function SignInPage() {
   return (
     <div className="page-background">
       <main className="main-class">
-        <Link href="/" className="text-zinc-600">
+        <Link href="/" className="text-zinc-600 mb-10 mx-5">
           ← Powrót
         </Link>
 
-        <h1 className="hero-text">Zaloguj się</h1>
+        <h1 className="hero-text mb-10 mx-10 text-center md:text-start">Zaloguj się</h1>
 
         <SignInForm />
 
-        <div>
+        <div className="mt-5 text-center md:text-start mx-10">
           <span>Nie masz konta? </span>
           <Link href="/sign-up" className="underline">Zarejestruj się.</Link>
         </div>

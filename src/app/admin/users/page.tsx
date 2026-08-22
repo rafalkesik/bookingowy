@@ -16,7 +16,7 @@ export default async function UsersPage() {
   return (
     <div className="page-background">
       <main className="main-class">
-        <h1 className="hero-text">Użytkownicy</h1>
+        <h1 className="hero-text mb-10">Użytkownicy</h1>
         <UsersTable />
       </main>
     </div>

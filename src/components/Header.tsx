@@ -27,7 +27,7 @@ export default async function Header() {
             </div>
             <SignOutButton />
           </div> :        
-          <Link href="/sign-in" className="underline">
+          <Link href="/sign-in" className="login-button">
             Zaloguj
           </Link>
         }

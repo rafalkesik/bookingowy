@@ -27,7 +27,7 @@ export default function SignInForm() {
   }
 
   return (
-    <form action={handleSignIn} className="form">
+    <form action={handleSignIn} className="form mx-auto md:mx-10">
       <label htmlFor="email">E-mail:</label>
       <input
         id="email"
@@ -46,7 +46,7 @@ export default function SignInForm() {
       />
       <button
         type="submit"
-        className="main-button mx-auto"
+        className="main-button mx-auto mt-5"
       >
         Zaloguj
       </button>

@@ -19,10 +19,18 @@ export default async function MyCalendar() {
   return (
     <div className="page-background">
       <main className="main-class">
-        <h1 className="hero-text">
+        <h1 className="hero-text mb-10">
           Mój kalendarz
         </h1>
-        <CalendarComponent events={rbcHostexEvents}/>     
+        <CalendarComponent events={rbcHostexEvents}/>  
+        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O moim kalendarzu</h2>
+        <p className="paragraph">
+          Mój kalendarz przedstawia najświeższe rezerwacje z systemu Hostex.
+        </p>
+        <p className="paragraph mt-2">
+          Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
+          oraz planowanie sprzątań i dostaw prania.
+        </p>
       </main>
     </div>
   );

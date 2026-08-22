@@ -17,7 +17,7 @@ export default async function RoadmapPage({ searchParams }: SearchParamProps) {
   return (
     <div className="page-background">
       <main className="main-class">
-        <Link href="/" className="text-zinc-600">
+        <Link href="/" className="text-zinc-600 ml-5 mb-5">
           ← Powrót
         </Link>
 
