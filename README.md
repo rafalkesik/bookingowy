@@ -61,12 +61,6 @@ This creates a database matching the `DATABASE_URL` in `.env.example` (default: 
 ```bash
 npx prisma migrate dev
 ```
-
-This creates the schema in your local database. Optionally seed it:
-
-```bash
-npx prisma db seed
-```
 ### 6. Add an admin user
 ```bash
 npx auth@latest create-admin --email admin@example.com --name "Admin" --role admin
