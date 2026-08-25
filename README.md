@@ -1,37 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🇵🇱 Polish README at the bottom.
+## About
 
-## Getting Started
+This web-app aims to support management of short-term rental. It helps manage the cleaning and laundry of apartments.
+The app is integrated via API with Hostex - a Property Management System, which does not have the ability to manage cleaning and laundry.
 
+See the app here:
+https://bookingowy.vercel.app
 
-First, run the development server:
+## Run the project locally
 
+To run the project locally, follow the following steps:
+
+1. Copy the project:
+```bash
+gh repo clone rafalkesik/bookingowy
+```
+2. Install the dependencies:
+```bash
+npm install
+```
+3. Run the server locally:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## O projekcie
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ta aplikacja webowa wspiera zarządzanie wynajmem krótkoterminowym. Pomaga w zarządzaniu usługami sprzątania i prania.
+Aplikacja jest zintegrowana przez API z Hostex - Systemem Zarządzania Nieruchomościami, któremu brakuje funkcjonalności zarządzania sprzątaniem i praniem.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Zobacz działającą aplikację tutaj:
+https://bookingowy.vercel.app
 
-## Learn More
+## Uruchom projekt lokalnie
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Skopiuj projekt
+```bash
+gh repo clone rafalkesik/bookingowy
+```
+2. Zainstaluj biblioteki
+```bash
+npm install
+```
+3. Uruchom serwer lokalnie
+```bash
+npm run dev
+```
+4. Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce, by wyświetlić wynik.
