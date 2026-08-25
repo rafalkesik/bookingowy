@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Roadmap.module.css";
 import { colors, functionalities } from "@/lib/roadmap";
-import Modal from "@/components/Modal";
+import RoadmapModal from "@/components/RoadmapModal";
 
 type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -10,7 +10,7 @@ type SearchParamProps = {
 export default function Roadmap({ searchParams }: SearchParamProps) {
   return (
     <section className={styles.timeline}>
-      { searchParams.modal ? <Modal modalIndex={Number(searchParams.modal)}/> : "" }
+      { searchParams.modal ? <RoadmapModal modalIndex={Number(searchParams.modal)}/> : "" }
 
       <h1 className={styles.timeline__title}>
         Roadmapa aplikacji
