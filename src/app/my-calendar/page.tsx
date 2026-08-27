@@ -23,7 +23,9 @@ export default async function MyCalendar() {
           Mój kalendarz
         </h1>
         <CalendarComponent events={rbcHostexEvents}/>  
-        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O moim kalendarzu</h2>
+        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">
+          O moim kalendarzu
+        </h2>
         <p className="paragraph">
           Mój kalendarz przedstawia najświeższe rezerwacje z systemu Hostex.
         </p>

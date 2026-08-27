@@ -24,7 +24,9 @@ export default function CalendarPage() {
             Testowy kalendarz
           </h1>
           <CalendarComponent events={rbcEvents} />
-          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O aplikacji</h2>
+          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">
+            O aplikacji
+          </h2>
           <p className="paragraph">
             Kalendarz umożliwia wyświetlenie wszystkich rezerwacji
             w jednym miejscu.
