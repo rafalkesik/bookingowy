@@ -6,9 +6,18 @@ import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
+import CalendarModal from "./CalendarModal";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
+
+export type slotInfoType = {
+  start: Date;
+  end: Date;
+  slots: Array<Date>;
+  action: "select" | "click" | "doubleClick";
+  box?: { x: number; y: number; clientX: number; clientY: number };
+}
 
 // Used to create custom views:
 // const views = Object.values(Views);
@@ -16,13 +25,29 @@ const localizer = dayjsLocalizer(dayjs);
 export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
+  const [modalOn, setModalOn] = useState<boolean>(false);
+  const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
 
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
 
+  const handleSelectSlot = (
+    slotInfo: slotInfoType
+  ) => {
+    const oneDayClicked = slotInfo?.action === "click";
+    oneDayClicked && setModalOn(true);
+    setSelectedSlot(slotInfo);
+  }
+
+  const closeModal = () => {
+    setModalOn(false);
+    setSelectedSlot(null);
+  }
+
   return (
     <div className="calendar-container">
-      <Calendar 
+      { modalOn && <CalendarModal closeModal={closeModal} slotInfo={selectedSlot} /> }
+      <Calendar
         localizer={localizer}
         events={events}
         // views={views}
@@ -31,6 +56,8 @@ export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
         onNavigate={onNavigate}
         onView={onView}
         culture="pl"
+        selectable={true}
+        onSelectSlot={handleSelectSlot}
         messages={{
           month: "Miesiąc",
           week: "Tydzień",

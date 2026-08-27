@@ -88,8 +88,6 @@ form input {
   .main-calendar-class {
     display: flex;
     flex: 1;
-    width: 100%;
-    max-width: 64rem;
     flex-direction: column;
     padding: 60 52 128;
     background-color: white;
@@ -102,6 +100,7 @@ form input {
   .calendar-container {
     height: 520px;
     width: 100%;
+    
 
     @media (max-width: 770px) {
       height: 600px;
