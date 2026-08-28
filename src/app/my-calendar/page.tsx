@@ -1,4 +1,4 @@
-import { CalendarComponent } from "@/components/CalendarComponent";
+import { CalendarComponent } from "@/components/react-big-calendar/CalendarComponent";
 import { verifyAdmin } from "@/lib/auth/session";
 import { getRbcEvents } from "@/lib/calendarData";
 import { Metadata } from "next";

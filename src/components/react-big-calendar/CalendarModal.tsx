@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { slotInfoType } from "./CalendarComponent";
+import { slotInfoType } from "../CalendarComponent";
 import pl from "dayjs/locale/pl";
 
 dayjs.locale(pl);
