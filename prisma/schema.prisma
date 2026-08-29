@@ -19,15 +19,15 @@ model Reservation {
   name        String
   platform    String
   guestAmount Int
-  startDate   DateTime
-  endDate     DateTime
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
   note        String
 	@@map("reservation")
 }
 
 model CleaningEvent {
 	id 				Int 			@id @default(autoincrement())
-	date			DateTime
+	date			DateTime  @db.Date @unique
 	createdAt DateTime 	@default(now())
 	updatedAt DateTime  @updatedAt
 	@@map("cleaning_event")
