@@ -1,5 +1,7 @@
-// This component changed the default calendar component from react-big-calendar component.
-// Here we add the icons to the calendar.
+// This file changes the default calendar component from 
+// external react-big-calendar component.
+
+// This file adds the icons to the calendar.
 
 import dayjs from "dayjs";
 
@@ -8,9 +10,6 @@ export default function CustomDateHeader(
   { cleaningDays: Set<string> }
 ) {
   const cleaningToday = cleaningDays.has(dayjs(date).format("YYYY-MM-DD"));
-  console.log("Dzisiaj: ", dayjs(date).format("YYYY-MM-DD"));
-  console.log("Dnie sprzątania: ", cleaningDays);
-  console.log("dzisiaj sprzatanie? ", cleaningToday);
 
   if (!drilldownView) {
     return (<span>{ label }</span>)

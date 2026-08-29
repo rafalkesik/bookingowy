@@ -3,7 +3,6 @@ import { CalendarComponent } from "@/components/CalendarComponent";
 import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 import { fetchCleaningEventsFromDB } from "@/lib/cleaningEvents";
-import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Bookingowy | Demo kalendarza",

@@ -244,6 +244,29 @@ form input {
     width: 100%;
   }
 
+  .calendar-action-button {
+    padding: 8 16;
+    margin-right: 4;
+    background-color: var(--color-amber-300);
+    font-weight: 500;
+    border-radius: 6px;    
+  }
+  .calendar-action-button:hover {
+    background-color: var(--color-amber-200)
+  }
+
+  .calendar-cancel-button {
+    padding: 8 16;
+    margin-right: 4;
+    background-color: var(--color-red-200);
+    font-weight: 500;
+    border-radius: 6px;    
+  }
+  .calendar-cancel-button:hover {
+    background-color: var(--color-red-100)
+  }
+
+
 /* Header, navigation styles */
   .logo-class {
     font-size: xx-large;
