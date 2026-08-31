@@ -23,9 +23,10 @@ export type slotInfoType = {
 // Used to create custom views:
 // const views = Object.values(Views);
 
-export const CalendarComponent = ({events, cleaningEvents }: {
+export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
   events: RbcReservation[],
   cleaningEvents: Set<string>,
+  cleaningAllowed: boolean,
 }) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
@@ -58,6 +59,7 @@ export const CalendarComponent = ({events, cleaningEvents }: {
           slotInfo={selectedSlot}
           cleaningDays={cleaningDays}
           setCleaningDays={setCleaningDays}
+          cleaningAllowed={cleaningAllowed}
         />
       }
       <Calendar

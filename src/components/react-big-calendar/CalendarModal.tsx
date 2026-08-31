@@ -11,10 +11,11 @@ type CalendarModalProps = {
   slotInfo: slotInfoType | null,
   cleaningDays: Set<string>,
   setCleaningDays: Dispatch<SetStateAction<Set<string>>>,
+  cleaningAllowed: boolean,
 }
 
 export default function CalendarModal(
-  { closeModal, slotInfo, cleaningDays, setCleaningDays }: CalendarModalProps
+  { closeModal, slotInfo, cleaningDays, setCleaningDays, cleaningAllowed }: CalendarModalProps
 ) {
   const x = slotInfo?.box?.clientX ?? 0;
   const y = slotInfo?.box?.clientY ?? 0;
@@ -73,7 +74,7 @@ export default function CalendarModal(
               </button> :
               <button
                 className="calendar-action-button"              
-                onClick={() => slotInfo && addCleaningEvent(slotInfo.start)}
+                onClick={() => slotInfo && cleaningAllowed && addCleaningEvent(slotInfo.start)}
               >
                 Dodaj sprzątanie
               </button>

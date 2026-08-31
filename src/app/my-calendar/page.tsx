@@ -1,6 +1,7 @@
-import { CalendarComponent } from "@/components/react-big-calendar/CalendarComponent";
+import { CalendarComponent } from "@/components/CalendarComponent";
 import { verifyAdmin } from "@/lib/auth/session";
 import { getRbcEvents } from "@/lib/calendarData";
+import { fetchCleaningEventsFromDB } from "@/lib/cleaningEvents";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -15,6 +16,7 @@ export default async function MyCalendar() {
   }
 
   const rbcHostexEvents = await getRbcEvents();
+  const cleaningEvents = new Set("");
   
   return (
     <div className="page-background">
@@ -22,14 +24,19 @@ export default async function MyCalendar() {
         <h1 className="hero-text mb-10">
           Mój kalendarz
         </h1>
-        <CalendarComponent events={rbcHostexEvents}/>  
+        
+        <CalendarComponent events={rbcHostexEvents} cleaningEvents={cleaningEvents} cleaningAllowed={false}/>  
+
         <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O moim kalendarzu</h2>
         <p className="paragraph">
           Mój kalendarz przedstawia najświeższe rezerwacje z systemu Hostex.
         </p>
         <p className="paragraph mt-2">
           Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
-          oraz planowanie sprzątań i dostaw prania.
+          oraz planowanie sprzątań i dostaw prania. 
+        </p>
+        <p className="paragraph mt-2">
+          Funkcjonalność planowania sprzątań jest na razie dostępna w testowym kalendarzu.
         </p>
       </main>
     </div>
