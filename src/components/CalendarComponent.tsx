@@ -76,7 +76,7 @@ export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
         components={{
           month: {
             // dateHeader: CustomDateHeader
-            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} />
+            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} cleaningAllowed={cleaningAllowed}/>
           }
         }}
         messages={{

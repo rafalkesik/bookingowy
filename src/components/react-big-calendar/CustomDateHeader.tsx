@@ -6,8 +6,8 @@
 import dayjs from "dayjs";
 
 export default function CustomDateHeader(
-  { label, drilldownView, onDrillDown, date, cleaningDays } :
-  { cleaningDays: Set<string> }
+  { label, drilldownView, onDrillDown, date, cleaningDays, cleaningAllowed } :
+  { cleaningDays: Set<string>, cleaningAllowed: boolean }
 ) {
   const cleaningToday = cleaningDays.has(dayjs(date).format("YYYY-MM-DD"));
 
@@ -18,7 +18,7 @@ export default function CustomDateHeader(
   return (
     <div className="flex justify-between ml-2">
       <div>
-        { cleaningToday &&
+        { cleaningToday && cleaningAllowed &&
           <>
             <span aria-hidden>🧹</span>
             <span className="sr-only">Cleaning scheduled</span>

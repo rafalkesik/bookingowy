@@ -16,7 +16,7 @@ export default async function MyCalendar() {
   }
 
   const rbcHostexEvents = await getRbcEvents();
-  const cleaningEvents = new Set("");
+  const cleaningEvents = await fetchCleaningEventsFromDB();
   
   return (
     <div className="page-background">
