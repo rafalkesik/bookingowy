@@ -25,11 +25,11 @@ const functionalities = [
   {
     subtitle: "funkcjonalnosć",
     title: "Sprzątanie",
-    body: "Dodać możliwość dodawania eventu sprzątania z poziomu \
+    body: "🔜 ✅ Dodać możliwość dodawania eventu sprzątania z poziomu \
            kalendarza.",
     mustHave: [
-      "Ikona sprzątania ma się wyświetlić po lewej od numeru dnia.",
-      "Po kliknięciu w dzień, pojawia się opcja usunięcia, lub dodania sprzątania.",
+      "✅ Ikona sprzątania ma się wyświetlić po lewej od numeru dnia.",
+      "✅ Po kliknięciu w dzień, pojawia się opcja usunięcia, lub dodania sprzątania.",
     ],
     niceToHave: [
       "Dodać przycisk do kopiowania listy sprzątań do clipboard",

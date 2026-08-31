@@ -66,6 +66,19 @@ form input {
   }
 
 /* Classes */
+ 
+  /* Used for <spans> that explain icons to screen readers.
+     This class makes the spans hidden visually. */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .page-background {
     display: flex;
     flex-direction: column;
@@ -230,6 +243,29 @@ form input {
   .form input {
     width: 100%;
   }
+
+  .calendar-action-button {
+    padding: 8 16;
+    margin-right: 4;
+    background-color: var(--color-amber-300);
+    font-weight: 500;
+    border-radius: 6px;    
+  }
+  .calendar-action-button:hover {
+    background-color: var(--color-amber-200)
+  }
+
+  .calendar-cancel-button {
+    padding: 8 16;
+    margin-right: 4;
+    background-color: var(--color-red-200);
+    font-weight: 500;
+    border-radius: 6px;    
+  }
+  .calendar-cancel-button:hover {
+    background-color: var(--color-red-100)
+  }
+
 
 /* Header, navigation styles */
   .logo-class {

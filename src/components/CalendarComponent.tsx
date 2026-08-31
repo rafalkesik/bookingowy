@@ -6,7 +6,8 @@ import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
-import CalendarModal from "./CalendarModal";
+import CalendarModal from "./react-big-calendar/CalendarModal";
+import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
@@ -22,11 +23,16 @@ export type slotInfoType = {
 // Used to create custom views:
 // const views = Object.values(Views);
 
-export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
+export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
+  events: RbcReservation[],
+  cleaningEvents: Set<string>,
+  cleaningAllowed: boolean,
+}) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
+  const [cleaningDays, setCleaningDays] = useState<Set<string>>(cleaningEvents);
 
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
@@ -46,7 +52,16 @@ export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
 
   return (
     <div className="calendar-container">
-      { modalOn && <CalendarModal closeModal={closeModal} slotInfo={selectedSlot} /> }
+      {
+        modalOn &&
+        <CalendarModal
+          closeModal={closeModal}
+          slotInfo={selectedSlot}
+          cleaningDays={cleaningDays}
+          setCleaningDays={setCleaningDays}
+          cleaningAllowed={cleaningAllowed}
+        />
+      }
       <Calendar
         localizer={localizer}
         events={events}
@@ -58,6 +73,12 @@ export const CalendarComponent = ({ events }: { events: RbcReservation[]}) => {
         culture="pl"
         selectable={true}
         onSelectSlot={handleSelectSlot}
+        components={{
+          month: {
+            // dateHeader: CustomDateHeader
+            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} cleaningAllowed={cleaningAllowed}/>
+          }
+        }}
         messages={{
           month: "Miesiąc",
           week: "Tydzień",

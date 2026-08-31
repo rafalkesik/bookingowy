@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { CalendarComponent } from "@/components/CalendarComponent";
 import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
+import { fetchCleaningEventsFromDB } from "@/lib/cleaningEvents";
 
 export const metadata: Metadata = {
   title: "Bookingowy | Demo kalendarza",
   description: "Przetestuj aplikację Bookingowy na testowych danych. Zarządzaj sprzątaniami i dostawami prania automatycznie.",
 };
 
-export default function CalendarPage() {
-  const rbcEvents = SampleRbcEvents;
+export default async function CalendarPage() {
+  const rbcEvents = SampleRbcEvents;  
+  const cleaningEvents = await fetchCleaningEventsFromDB();
 
   console.log("Amount of test reservations loaded:", rbcEvents.length);
 
@@ -23,17 +25,17 @@ export default function CalendarPage() {
           <h1 className="hero-text mb-10">
             Testowy kalendarz
           </h1>
-          <CalendarComponent events={rbcEvents} />
-          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">
-            O aplikacji
-          </h2>
+
+          <CalendarComponent events={rbcEvents} cleaningEvents={cleaningEvents} cleaningAllowed={true}/>
+          
+          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O aplikacji</h2>
           <p className="paragraph">
-            Kalendarz umożliwia wyświetlenie wszystkich rezerwacji
-            w jednym miejscu.
+            Kalendarz umożliwia wyświetlenie rezerwacji z sytemu Hostex i
+            zaplanowanie sprzątania w jednym miejscu.
           </p>
           <p className="paragraph mt-2">
             Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
-            oraz planowanie sprzątań i dostaw prania.
+            oraz automatyczne planowanie sprzątań i dostaw prania.
           </p>
         </div>
       </main>
