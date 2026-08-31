@@ -15,16 +15,17 @@ export function NavLinks({ isAdmin }: {isAdmin: boolean}) {
 
   return (
     <div id="nav-links" className="navLinks">
-      { navLinksList.map((navElement, index) => (
-        <div key={"navLink_" + index} className="navLink">
-          <Link
-            href={navElement.link}
-            className={(usePathname() === navElement.link) ? "text-black border-b" : ""}>
-            {navElement.name}
-          </Link>
-          {/* { index+1 < navLinksList.length ? <div>|</div> : "" } */}
-        </div>
-      )) }
+      { 
+        navLinksList.map((navElement, index) => (
+          <div key={"navLink_" + index} className="navLink">
+            <Link
+              href={navElement.link}
+              className={(usePathname() === navElement.link) ? "text-black border-b" : ""}>
+              {navElement.name}
+            </Link>
+          </div>
+        ))
+      }
     </div>
   );
 } 
