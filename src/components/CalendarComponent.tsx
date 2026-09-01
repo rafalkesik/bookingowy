@@ -35,7 +35,9 @@ export const CalendarComponent = ({
   const [view, setView] = useState<View>(Views.MONTH);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
-    const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>("cleaning_events");
+
+    const key = saveInDB ? "cleaning_events" : "test_cleaning_events";
+    const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>(key);
     // If cleaning events from DB is passed, set them in local storage to cleaningDays var.
     useEffect(() => {
       if (cleaningEventsFromDB) {
