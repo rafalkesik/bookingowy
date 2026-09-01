@@ -1,3 +1,6 @@
+// This component & styles have been taken from
+// https://codepen.io/paulhbarker/pen/apvGdv/, and slightly adjusted. 
+
 import Link from "next/link";
 import styles from "./Roadmap.module.css";
 import { colors, functionalities } from "@/lib/roadmap";
