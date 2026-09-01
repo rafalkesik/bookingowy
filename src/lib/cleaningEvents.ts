@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-export async function createCleaningEvent(date: string) {
+export async function createCleaningEventsInDB(date: string) {
   const newCleaningEvent = await prisma.cleaningEvent.create({
     data: { date: dayjs.utc(date).toDate() }  
   });

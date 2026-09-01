@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { slotInfoType } from "../CalendarComponent";
 import pl from "dayjs/locale/pl";
 import { Dispatch, SetStateAction } from "react";
-import { createCleaningEvent, deleteCleaningEvents } from "@/lib/cleaningEvents";
+import { createCleaningEventsInDB, deleteCleaningEvents } from "@/lib/cleaningEvents";
 
 dayjs.locale(pl);
 
@@ -28,7 +28,7 @@ export default function CalendarModal(
     setCleaningDays(
       prev => new Set(prev).add(dateOnly)
     );
-    createCleaningEvent(dateOnly);
+    createCleaningEventsInDB(dateOnly);
     closeModal();
   }
 
