@@ -6,10 +6,9 @@
 // This file adds the icons to the calendar.
 
 import dayjs from "dayjs";
-import PropTypes from 'prop-types';
 
 export default function CustomDateHeader(
-  { label, drilldownView, onDrillDown, date, cleaningDays, cleaningAllowed } :
+  { label, drilldownView, onDrillDown, date, cleaningDays } :
   {
     cleaningDays: Set<string>,
     cleaningAllowed: boolean,
@@ -28,7 +27,7 @@ export default function CustomDateHeader(
   return (
     <div className="flex justify-between ml-2">
       <div>
-        { cleaningToday && cleaningAllowed &&
+        { cleaningToday &&
           <>
             <span aria-hidden>🧹</span>
             <span className="sr-only">Cleaning scheduled</span>

@@ -25,7 +25,11 @@ export default async function MyCalendar() {
           Mój kalendarz
         </h1>
         
-        <CalendarComponent events={rbcHostexEvents} cleaningEvents={cleaningEvents} cleaningAllowed={false}/>  
+        <CalendarComponent
+          events={rbcHostexEvents}
+          cleaningEventsFromDB={cleaningEvents}
+          saveInDB={true}
+        />  
 
         <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O moim kalendarzu</h2>
         <p className="paragraph">

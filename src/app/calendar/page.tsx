@@ -3,6 +3,7 @@ import { CalendarComponent } from "@/components/CalendarComponent";
 import { SampleRbcEvents } from "@/lib/calendarData";
 import Link from "next/link";
 import { fetchCleaningEventsFromDB } from "@/lib/cleaningEvents";
+import { useLocalStorageSet } from "@/hooks/useLocalStorageSet"
 
 export const metadata: Metadata = {
   title: "Bookingowy | Demo kalendarza",
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 
 export default async function CalendarPage() {
   const rbcEvents = SampleRbcEvents;  
-  const cleaningEvents = await fetchCleaningEventsFromDB();
+  // const cleaningEvents = await fetchCleaningEventsFromDB();
+  // const [cleaningEvents, toggleCleaningEvent] = useLocalStorageSet<string>("cleaning_events");
 
   console.log("Amount of test reservations loaded:", rbcEvents.length);
 
@@ -26,7 +28,13 @@ export default async function CalendarPage() {
             Testowy kalendarz
           </h1>
 
-          <CalendarComponent events={rbcEvents} cleaningEvents={cleaningEvents} cleaningAllowed={true}/>
+          <CalendarComponent
+            events={rbcEvents}
+            // cleaningEvents={cleaningEvents}
+            // toggleCleaningEventLocally={toggleCleaningEvent}
+            cleaningAllowed={true}
+            saveInDB={false}
+          />
           
           <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O aplikacji</h2>
           <p className="paragraph">

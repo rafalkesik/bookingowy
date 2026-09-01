@@ -27,6 +27,7 @@ export async function fetchCleaningEventsFromDB() {
 
   try {
     cleaningEvents = await prisma.cleaningEvent.findMany();
+    console.log("Fetched cleaningEvents from DB: ", cleaningEvents);
   } catch (error) {
     console.error("Error while getting cleaningEvents from DB: ", error)
   }

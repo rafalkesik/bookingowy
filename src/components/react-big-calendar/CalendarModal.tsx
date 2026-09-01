@@ -10,12 +10,19 @@ type CalendarModalProps = {
   closeModal: () => void,
   slotInfo: slotInfoType | null,
   cleaningDays: Set<string>,
-  setCleaningDays: Dispatch<SetStateAction<Set<string>>>,
-  cleaningAllowed: boolean,
+  // setCleaningDays: Dispatch<SetStateAction<Set<string>>>,
+  toggleCleaningEventLocally: (item: string) => void,
+  saveInDB?: boolean,
 }
 
 export default function CalendarModal(
-  { closeModal, slotInfo, cleaningDays, setCleaningDays, cleaningAllowed }: CalendarModalProps
+  {
+    closeModal,
+    slotInfo,
+    cleaningDays,
+    toggleCleaningEventLocally,
+    saveInDB
+  }: CalendarModalProps
 ) {
   const x = slotInfo?.box?.clientX ?? 0;
   const y = slotInfo?.box?.clientY ?? 0;
@@ -25,22 +32,28 @@ export default function CalendarModal(
   async function addCleaningEvent(date: Date) {
     const dateOnly = dayjs(date).format("YYYY-MM-DD");
 
-    setCleaningDays(
-      prev => new Set(prev).add(dateOnly)
-    );
-    createCleaningEventsInDB(dateOnly);
+    toggleCleaningEventLocally(dateOnly);
+    console.log("Added cleaning event in local storage: ", dateOnly);
+
+    if (saveInDB) {
+      createCleaningEventsInDB(dateOnly);
+      console.log("Added cleaning event in DB: ", dateOnly);
+    }
+
     closeModal();
   }
 
   async function removeCleaningEvent(date: Date) {
     const dateOnly = dayjs(date).format("YYYY-MM-DD");
 
-    setCleaningDays(prev => {
-      const updated = new Set(prev);
-      updated.delete(dateOnly);
-      return updated;      
-    })
-    deleteCleaningEvents(dateOnly);
+    toggleCleaningEventLocally(dateOnly);
+    console.log("Removed cleaning event from local storage: ", dateOnly);
+
+    if (saveInDB) {
+      deleteCleaningEvents(dateOnly);
+      console.log("Removed cleaning event from DB: ", dateOnly);
+    }
+
     closeModal();
   }
 
@@ -74,7 +87,7 @@ export default function CalendarModal(
               </button> :
               <button
                 className="calendar-action-button"              
-                onClick={() => slotInfo && cleaningAllowed && addCleaningEvent(slotInfo.start)}
+                onClick={() => slotInfo && addCleaningEvent(slotInfo.start)}
               >
                 Dodaj sprzątanie
               </button>

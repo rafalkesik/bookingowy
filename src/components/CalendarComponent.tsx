@@ -4,10 +4,11 @@ import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
 import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
 import CalendarModal from "./react-big-calendar/CalendarModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
+import { useLocalStorageSet } from "@/hooks/useLocalStorageSet";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
@@ -23,16 +24,26 @@ export type slotInfoType = {
 // Used to create custom views:
 // const views = Object.values(Views);
 
-export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
+export const CalendarComponent = ({
+  events, cleaningEventsFromDB, saveInDB,
+}: {
   events: RbcReservation[],
-  cleaningEvents: Set<string>,
-  cleaningAllowed: boolean,
+  cleaningEventsFromDB?: Set<string>,
+  saveInDB: boolean,
 }) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
-  const [cleaningDays, setCleaningDays] = useState<Set<string>>(cleaningEvents);
+    const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>("cleaning_events");
+    // If cleaning events from DB is passed, set them in local storage to cleaningDays var.
+    useEffect(() => {
+      if (cleaningEventsFromDB) {
+        console.log("Attempting to save cleaning events from db to local storage...")
+        saveFromDB(cleaningEventsFromDB);
+        console.log("✅ Saved cleaning events from db to local storage.")
+      }
+    }, [cleaningEventsFromDB]);
 
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
@@ -58,8 +69,8 @@ export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
           closeModal={closeModal}
           slotInfo={selectedSlot}
           cleaningDays={cleaningDays}
-          setCleaningDays={setCleaningDays}
-          cleaningAllowed={cleaningAllowed}
+          toggleCleaningEventLocally={toggleCleaningEvent}
+          saveInDB={saveInDB}
         />
       }
       <Calendar
@@ -76,7 +87,7 @@ export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
         components={{
           month: {
             // dateHeader: CustomDateHeader
-            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} cleaningAllowed={cleaningAllowed}/>
+            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} />
           }
         }}
         messages={{

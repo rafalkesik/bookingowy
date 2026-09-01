@@ -12,6 +12,7 @@ export function useLocalStorageSet<T>(key: string) {
         try {
           const parsedArray = JSON.parse(savedData);
           setState(new Set(parsedArray));
+          console.log("Loaded data from Local Storage: ", savedData);
         } catch (error){
           console.error("Error while loading from localStorage:", error);
         }
@@ -21,17 +22,31 @@ export function useLocalStorageSet<T>(key: string) {
 
   const toggle = (item: T) => {
     const nextSet = new Set(state);
+    console.log("Started toggling a date...")
 
     if (state.has(item)) {
-      nextSet.delete(item)
+      nextSet.delete(item);
     } else {
-      nextSet.add(item)
+      nextSet.add(item);
     }
 
-    setState(nextSet)
+    setState(nextSet);
 
-    localStorage.setItem(key, JSON.stringify(Array.from(state)));
+    try {
+      localStorage.setItem(key, JSON.stringify(Array.from(nextSet)));
+      console.log("✅ Successfuly toggled the date.")
+    } catch (error) {
+      console.error("❌ Error while setting value in localStorage: ", error);
+    }
+  }
+
+  const set = (newState: Set<T>) => {
+    setState(newState);
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(Array.from(newState)));
+    }
   }
  
-  return [state, toggle] as const;
+  return [state, toggle, set] as const;
 }
