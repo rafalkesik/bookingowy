@@ -1,3 +1,6 @@
+// The app barely uses the DB for now, so I leave the validations
+// for when the app is developed enough to use it properly.
+
 import { z } from "zod";
 
 export const CreateReservationSchema = z.object({

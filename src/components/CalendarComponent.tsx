@@ -4,38 +4,37 @@ import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
 import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
 import CalendarModal from "./react-big-calendar/CalendarModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
+import { useLocalStorageSet } from "@/hooks/useLocalStorageSet";
+import { slotInfoType } from "@/types/reactBigCalendar";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
 
-export type slotInfoType = {
-  start: Date;
-  end: Date;
-  slots: Array<Date>;
-  action: "select" | "click" | "doubleClick";
-  box?: { x: number; y: number; clientX: number; clientY: number };
-}
-
-// Used to create custom views:
-// const views = Object.values(Views);
-
-export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
+export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   events: RbcReservation[],
-  cleaningEvents: Set<string>,
-  cleaningAllowed: boolean,
+  cleaningEventsFromDB?: Set<string>,
 }) => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
-  const [modalOn, setModalOn] = useState<boolean>(false);
-  const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
-  const [cleaningDays, setCleaningDays] = useState<Set<string>>(cleaningEvents);
-
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
+  const [modalOn, setModalOn] = useState<boolean>(false);
+  const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
+  
+  const saveCleaningEventsInDB = !!cleaningEventsFromDB;
+  const key = saveCleaningEventsInDB ? "cleaning_events" : "test_cleaning_events";
+  const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>(key);
+  
+  // If cleaning events from DB are passed, set them in local storage.
+  useEffect(() => {
+    if (saveCleaningEventsInDB) {
+      saveFromDB(cleaningEventsFromDB);
+    }
+  }, [cleaningEventsFromDB]);
 
   const handleSelectSlot = (
     slotInfo: slotInfoType
@@ -58,14 +57,13 @@ export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
           closeModal={closeModal}
           slotInfo={selectedSlot}
           cleaningDays={cleaningDays}
-          setCleaningDays={setCleaningDays}
-          cleaningAllowed={cleaningAllowed}
+          toggleCleaningEventLocally={toggleCleaningEvent}
+          saveInDB={saveCleaningEventsInDB}
         />
       }
       <Calendar
         localizer={localizer}
         events={events}
-        // views={views}
         date={date}
         view={view}
         onNavigate={onNavigate}
@@ -75,8 +73,7 @@ export const CalendarComponent = ({events, cleaningEvents, cleaningAllowed }: {
         onSelectSlot={handleSelectSlot}
         components={{
           month: {
-            // dateHeader: CustomDateHeader
-            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} cleaningAllowed={cleaningAllowed}/>
+            dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} />
           }
         }}
         messages={{

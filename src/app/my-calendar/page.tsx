@@ -7,7 +7,8 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Bookingowy | Mój kalendarz",
-  description: "Przeglądaj twój kalendraz zintegrowany z Hostex. Zarządzaj sprzątaniami i dostawami prania."
+  description: "Przeglądaj twój kalendraz zintegrowany z Hostex. \
+                Zarządzaj sprzątaniami i dostawami prania."
 }
 
 export default async function MyCalendar() {
@@ -25,18 +26,25 @@ export default async function MyCalendar() {
           Mój kalendarz
         </h1>
         
-        <CalendarComponent events={rbcHostexEvents} cleaningEvents={cleaningEvents} cleaningAllowed={false}/>  
+        <CalendarComponent
+          events={rbcHostexEvents}
+          cleaningEventsFromDB={cleaningEvents}
+        />  
 
-        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O moim kalendarzu</h2>
+        <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">
+          O moim kalendarzu
+        </h2>
         <p className="paragraph">
-          Mój kalendarz przedstawia najświeższe rezerwacje z systemu Hostex.
+          Mój kalendarz przedstawia najświeższe
+          rezerwacje z systemu Hostex.
         </p>
         <p className="paragraph mt-2">
           Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
           oraz planowanie sprzątań i dostaw prania. 
         </p>
         <p className="paragraph mt-2">
-          Funkcjonalność planowania sprzątań jest na razie dostępna w testowym kalendarzu.
+          Funkcjonalność planowania sprzątań jest na 
+          razie dostępna w testowym kalendarzu.
         </p>
       </main>
     </div>

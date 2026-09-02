@@ -6,20 +6,19 @@
 // This file adds the icons to the calendar.
 
 import dayjs from "dayjs";
-import PropTypes from 'prop-types';
 
 export default function CustomDateHeader(
-  { label, drilldownView, onDrillDown, date, cleaningDays, cleaningAllowed } :
+  { label, drilldownView, onDrillDown, date, cleaningDays } :
   {
     cleaningDays: Set<string>,
-    cleaningAllowed: boolean,
     label: any,
     date: any,
     drilldownView: any,
     onDrillDown: any,
   }
 ) {
-  const cleaningToday = cleaningDays.has(dayjs(date).format("YYYY-MM-DD"));
+  const dateFormatted = dayjs(date).format("YYYY-MM-DD");
+  const cleaningToday = cleaningDays.has(dateFormatted);
 
   if (!drilldownView) {
     return (<span>{ label }</span>)
@@ -28,7 +27,7 @@ export default function CustomDateHeader(
   return (
     <div className="flex justify-between ml-2">
       <div>
-        { cleaningToday && cleaningAllowed &&
+        { cleaningToday &&
           <>
             <span aria-hidden>🧹</span>
             <span className="sr-only">Cleaning scheduled</span>

@@ -2,6 +2,7 @@ const colors = [
   "#46b8e9",
   "#3ee9d1",
   "#ce43eb",
+  "#FF659B",
   "#e89260",
 ]
 
@@ -84,6 +85,17 @@ const functionalities = [
     niceToHave: [
       "Każda zmiana w rezerwacjach automatycznie zmienia dzień prania."
     ]
+  },
+  {
+    subtitle: "funkcjonalność",
+    title: "\"Mój Kalendarz\" dla każdego usera",
+    body: "Umożliwić userom integrację z ich kontem Hostex i \
+           zarządzanie swoim kalendarzem prywatnie",
+    mustHave: [
+      "Umożliwić bezpieczną integrację userom z ich kontem Hostex.",
+      "Wyświetlić userom ich prywatny kalendarz z Hostex.",
+      "Każdy user musi mieć swój prywatny kalendarz sprzątań, prań",
+    ],
   },
 ]
 

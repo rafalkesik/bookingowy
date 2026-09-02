@@ -6,20 +6,21 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-export async function createCleaningEvent(date: string) {
-  const newCleaningEvent = await prisma.cleaningEvent.create({
-    data: { date: dayjs.utc(date).toDate() }  
-  });
-
-  console.log("New cleaning event created:", newCleaningEvent);
+export async function toggleCleaningEventInDB(date: string, action: "create" | "delete") {
+  (action === "create") && await createCleaningEventInDB(date);
+  (action === "delete") && await deleteCleaningEventInDB(date);
 }
 
-export async function deleteCleaningEvents(date: string) {
-  const deletedEvent = await prisma.cleaningEvent.delete({
+export async function createCleaningEventInDB(date: string) {
+  await prisma.cleaningEvent.create({
+    data: { date: dayjs.utc(date).toDate() }  
+  });
+}
+
+export async function deleteCleaningEventInDB(date: string) {
+  await prisma.cleaningEvent.delete({
     where: { date: dayjs.utc(date).toDate() }
   })
-
-  console.log("Deleted cleaning event: ", deletedEvent);
 }
 
 export async function fetchCleaningEventsFromDB() {
