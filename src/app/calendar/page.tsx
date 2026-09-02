@@ -5,12 +5,11 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Bookingowy | Demo kalendarza",
-  description: "Przetestuj aplikację Bookingowy na testowych danych. Zarządzaj sprzątaniami i dostawami prania automatycznie.",
+  description: "Przetestuj aplikację Bookingowy na testowych danych. \
+                Zarządzaj sprzątaniami i dostawami prania automatycznie.",
 };
 
 export default async function CalendarPage() {
-  const rbcEvents = SampleRbcEvents;  
-
   return (
     <div className="page-background">
       <main className="max-w-5xl w-full flex">
@@ -23,10 +22,12 @@ export default async function CalendarPage() {
           </h1>
 
           <CalendarComponent
-            events={rbcEvents}
+            events={SampleRbcEvents}
           />
           
-          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">O aplikacji</h2>
+          <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">
+            O aplikacji
+          </h2>
           <p className="paragraph">
             Kalendarz umożliwia wyświetlenie rezerwacji z sytemu Hostex i
             zaplanowanie sprzątania w jednym miejscu.

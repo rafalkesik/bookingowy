@@ -14,9 +14,7 @@ import { slotInfoType } from "@/types/reactBigCalendar";
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
 
-export const CalendarComponent = ({
-  events, cleaningEventsFromDB,
-}: {
+export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   events: RbcReservation[],
   cleaningEventsFromDB?: Set<string>,
 }) => {

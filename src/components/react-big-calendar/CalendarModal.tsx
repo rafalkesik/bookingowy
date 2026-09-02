@@ -10,7 +10,7 @@ type CalendarModalProps = {
   slotInfo: slotInfoType | null,
   cleaningDays: Set<string>,
   toggleCleaningEventLocally: (item: string) => void,
-  saveInDB?: boolean,
+  saveInDB?: boolean, // If true, the cleaning events should be stored in DB. For now, only MyCalendar stores them in DB, and TestCalendar only in LocalStorage.
 }
 
 export default function CalendarModal(
@@ -26,12 +26,11 @@ export default function CalendarModal(
   const y = slotInfo?.box?.clientY ?? 0;
   const pickedDay = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   const cleaningScheduled = cleaningDays.has(pickedDay);
-  const dateOnly = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   
   async function toggleCleaningEvent(action: "create" | "delete") {
-    saveInDB && await toggleCleaningEventInDB(dateOnly, action);
+    saveInDB && await toggleCleaningEventInDB(pickedDay, action);
     closeModal();
-    toggleCleaningEventLocally(dateOnly);
+    toggleCleaningEventLocally(pickedDay);
   }
 
   return (
@@ -48,7 +47,7 @@ export default function CalendarModal(
       >
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900">
-            { dayjs(slotInfo?.start).format("D MMMM") }
+            { pickedDay }
           </h1>
           <div className="mt-2 px-7 pb-4">
             <p className="text-md">

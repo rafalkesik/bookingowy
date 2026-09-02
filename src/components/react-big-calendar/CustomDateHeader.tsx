@@ -17,7 +17,8 @@ export default function CustomDateHeader(
     onDrillDown: any,
   }
 ) {
-  const cleaningToday = cleaningDays.has(dayjs(date).format("YYYY-MM-DD"));
+  const dateFormatted = dayjs(date).format("YYYY-MM-DD");
+  const cleaningToday = cleaningDays.has(dateFormatted);
 
   if (!drilldownView) {
     return (<span>{ label }</span>)
