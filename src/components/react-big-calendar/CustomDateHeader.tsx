@@ -11,7 +11,6 @@ export default function CustomDateHeader(
   { label, drilldownView, onDrillDown, date, cleaningDays } :
   {
     cleaningDays: Set<string>,
-    cleaningAllowed: boolean,
     label: any,
     date: any,
     drilldownView: any,

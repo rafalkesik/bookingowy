@@ -1,8 +1,7 @@
 import dayjs from "dayjs";
-import { slotInfoType } from "../CalendarComponent";
+import { slotInfoType } from "@/types/reactBigCalendar";
 import pl from "dayjs/locale/pl";
-import { Dispatch, SetStateAction } from "react";
-import { createCleaningEventsInDB, deleteCleaningEvents } from "@/lib/cleaningEvents";
+import { toggleCleaningEventInDB } from "@/lib/cleaningEvents";
 
 dayjs.locale(pl);
 
@@ -10,7 +9,6 @@ type CalendarModalProps = {
   closeModal: () => void,
   slotInfo: slotInfoType | null,
   cleaningDays: Set<string>,
-  // setCleaningDays: Dispatch<SetStateAction<Set<string>>>,
   toggleCleaningEventLocally: (item: string) => void,
   saveInDB?: boolean,
 }
@@ -28,47 +26,30 @@ export default function CalendarModal(
   const y = slotInfo?.box?.clientY ?? 0;
   const pickedDay = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   const cleaningScheduled = cleaningDays.has(pickedDay);
-
-  async function addCleaningEvent(date: Date) {
-    const dateOnly = dayjs(date).format("YYYY-MM-DD");
-
-    toggleCleaningEventLocally(dateOnly);
-    console.log("Added cleaning event in local storage: ", dateOnly);
-
-    if (saveInDB) {
-      createCleaningEventsInDB(dateOnly);
-      console.log("Added cleaning event in DB: ", dateOnly);
-    }
-
+  const dateOnly = dayjs(slotInfo?.start).format("YYYY-MM-DD");
+  
+  async function toggleCleaningEvent(action: "create" | "delete") {
+    saveInDB && await toggleCleaningEventInDB(dateOnly, action);
     closeModal();
-  }
-
-  async function removeCleaningEvent(date: Date) {
-    const dateOnly = dayjs(date).format("YYYY-MM-DD");
-
     toggleCleaningEventLocally(dateOnly);
-    console.log("Removed cleaning event from local storage: ", dateOnly);
-
-    if (saveInDB) {
-      deleteCleaningEvents(dateOnly);
-      console.log("Removed cleaning event from DB: ", dateOnly);
-    }
-
-    closeModal();
   }
 
   return (
     <div
-      className="z-40 fixed inset-0 bg-gray-600/0 overflow-y-auto h-full w-full"
+      className="z-40 fixed inset-0 bg-gray-600/0
+                 overflow-y-auto h-full w-full"
       onClick={closeModal}
     >
       <div
-        className="z-50 fixed py-5 border mx-5 shadow-lg rounded-md bg-white"
+        className="z-50 fixed py-5 border mx-5
+                   shadow-lg rounded-md bg-white"
         style={{ top: y+20, left: x-50 }}
         onClick={ (e) => e.stopPropagation() }
       >
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">{ dayjs(slotInfo?.start).format("D MMMM") }</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            { dayjs(slotInfo?.start).format("D MMMM") }
+          </h1>
           <div className="mt-2 px-7 pb-4">
             <p className="text-md">
               {
@@ -81,20 +62,23 @@ export default function CalendarModal(
             { cleaningScheduled ?
               <button
                 className="calendar-cancel-button"
-                onClick={() => slotInfo && removeCleaningEvent(slotInfo.start)}
+                onClick={() => toggleCleaningEvent("delete")}
               >
                 Anuluj sprzątanie
               </button> :
               <button
                 className="calendar-action-button"              
-                onClick={() => slotInfo && addCleaningEvent(slotInfo.start)}
+                onClick={() => toggleCleaningEvent("create")}
               >
                 Dodaj sprzątanie
               </button>
             }
 
             <button
-              className="px-4 py-2 mt-3 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="px-4 py-2 mt-3 bg-blue-500 text-white
+                         text-base font-medium rounded-md shadow-sm
+                         hover:bg-gray-400 focus:outline-none
+                         focus:ring-2 focus:ring-gray-300"
               onClick={closeModal}
             >
               Zamknij
