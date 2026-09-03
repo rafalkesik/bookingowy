@@ -18,13 +18,14 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   events: RbcReservation[],
   cleaningEventsFromDB?: Set<string>,
 }) => {
+  // States required by react-big-calendar component
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
-  
+  // Variables needed by CalendarModal
   const saveCleaningEventsInDB = !!cleaningEventsFromDB;
   const key = saveCleaningEventsInDB ? "cleaning_events" : "test_cleaning_events";
   const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>(key);
