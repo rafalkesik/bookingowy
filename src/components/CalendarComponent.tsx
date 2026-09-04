@@ -10,6 +10,7 @@ import CalendarModal from "./react-big-calendar/CalendarModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
 import { useLocalStorageSet } from "@/hooks/useLocalStorageSet";
 import { slotInfoType } from "@/types/reactBigCalendar";
+import { CopyCleaningEventsButton } from "./CopyCleaningEventsButton";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
@@ -62,6 +63,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
           saveInDB={saveCleaningEventsInDB}
         />
       }
+      <CopyCleaningEventsButton events={cleaningDays} />
       <Calendar
         localizer={localizer}
         events={events}
