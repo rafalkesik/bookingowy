@@ -8,9 +8,10 @@ import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
 import CalendarModal from "./react-big-calendar/CalendarModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
-import { useLocalStorageSet } from "@/hooks/useLocalStorageSet";
+import { useLocalStorageMap } from "@/hooks/useLocalStorageMap";
 import { slotInfoType } from "@/types/reactBigCalendar";
 import { CopyCleaningEventsButton } from "./CopyCleaningEventsButton";
+import { cleaningEvent } from "@/types/cleaningEvents";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
@@ -29,7 +30,10 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   // Variables needed by CalendarModal
   const saveCleaningEventsInDB = !!cleaningEventsFromDB;
   const key = saveCleaningEventsInDB ? "cleaning_events" : "test_cleaning_events";
-  const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>(key);
+  const [cleaningObjectsMap, toggleCleaningEvent, saveFromDB] = useLocalStorageMap<cleaningEvent>(key);
+    const cleaningDays = new Set(Array.from(cleaningObjectsMap.values()).map((object) => object?.date));
+    console.log("cleaningDays: ", cleaningDays);
+    console.log("cleaningObjectMap: ", cleaningObjectsMap);
   
   // If cleaning events from DB are passed, set them in local storage.
   useEffect(() => {
@@ -58,12 +62,12 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
         <CalendarModal
           closeModal={closeModal}
           slotInfo={selectedSlot}
-          cleaningDays={cleaningDays}
+          cleaningObjectsArray={Array.from(cleaningObjectsMap.values())}
           toggleCleaningEventLocally={toggleCleaningEvent}
           saveInDB={saveCleaningEventsInDB}
         />
       }
-      <CopyCleaningEventsButton events={cleaningDays} />
+      <CopyCleaningEventsButton events={cleaningDays} cleaningObjectsMap={cleaningObjectsMap} />
       <Calendar
         localizer={localizer}
         events={events}
