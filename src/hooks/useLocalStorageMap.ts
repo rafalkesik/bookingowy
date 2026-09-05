@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react"
 
-export function useLocalStorageSet<T>(key: string) {
-  const [state, setState] = useState<Set<T>>(new Set());
+type WithDate = { date: string };
+
+export function useLocalStorageMap<T extends WithDate>(key: string) {
+  const [state, setState] = useState<Map<string, T>>(new Map());
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -11,7 +13,7 @@ export function useLocalStorageSet<T>(key: string) {
       if (savedData) {
         try {
           const parsedArray = JSON.parse(savedData);
-          setState(new Set(parsedArray));
+          setState(new Map(parsedArray.map((object: T): [string, T] => [object.date, object])));
           console.log("Loaded data from Local Storage: ", savedData);
         } catch (error){
           console.error("Error while loading from localStorage:", error);
@@ -21,30 +23,29 @@ export function useLocalStorageSet<T>(key: string) {
   }, [key]);
 
   const toggle = (item: T) => {
-    const nextSet = new Set(state);
+    const nextMap = new Map(state);
     console.log("Started toggling a date...")
 
-    if (state.has(item)) {
-      nextSet.delete(item);
+    if (state.has(item.date)) {
+      nextMap.delete(item.date);
     } else {
-      nextSet.add(item);
+      nextMap.set(item.date, item);
     }
 
-    setState(nextSet);
+    setState(nextMap);
 
     try {
-      localStorage.setItem(key, JSON.stringify(Array.from(nextSet)));
-      console.log("✅ Successfuly toggled the date.")
+      localStorage.setItem(key, JSON.stringify(Array.from(nextMap.values())));
     } catch (error) {
-      console.error("❌ Error while setting value in localStorage: ", error);
+      console.error("Error while setting value in localStorage: ", error);
     }
   }
 
-  const set = (newState: Set<T>) => {
+  const set = (newState: Map<string, T>) => {
     setState(newState);
 
     if (typeof window !== 'undefined') {
-      localStorage.setItem(key, JSON.stringify(Array.from(newState)));
+      localStorage.setItem(key, JSON.stringify(Array.from(newState.values())));
     }
   }
  

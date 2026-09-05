@@ -8,30 +8,39 @@ import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
 import CalendarModal from "./react-big-calendar/CalendarModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
-import { useLocalStorageSet } from "@/hooks/useLocalStorageSet";
+import { useLocalStorageMap } from "@/hooks/useLocalStorageMap";
 import { slotInfoType } from "@/types/reactBigCalendar";
+import { CopyCleaningEventsButton } from "./CopyCleaningEventsButton";
+import { cleaningEvent as CleaningEventType } from "@/types/cleaningEvents";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
 
 export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   events: RbcReservation[],
-  cleaningEventsFromDB?: Set<string>,
+  cleaningEventsFromDB?: Map<string, CleaningEventType>,
 }) => {
+  // States required by react-big-calendar component
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<View>(Views.MONTH);
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
+  // Variables needed by CalendarModal
+  const localStorageKey = cleaningEventsFromDB ? "cleaning_events" : "test_cleaning_events";
   
-  const saveCleaningEventsInDB = !!cleaningEventsFromDB;
-  const key = saveCleaningEventsInDB ? "cleaning_events" : "test_cleaning_events";
-  const [cleaningDays, toggleCleaningEvent, saveFromDB] = useLocalStorageSet<string>(key);
+  const [
+    cleaningObjectsMap, toggleCleaningEvent, saveFromDB
+  ] = useLocalStorageMap<CleaningEventType>(localStorageKey);
+  const cleaningDays = new Set(
+    Array.from(cleaningObjectsMap.values())
+    .map((object) => object?.date)
+  );
   
   // If cleaning events from DB are passed, set them in local storage.
   useEffect(() => {
-    if (saveCleaningEventsInDB) {
+    if (!!cleaningEventsFromDB) {
       saveFromDB(cleaningEventsFromDB);
     }
   }, [cleaningEventsFromDB]);
@@ -56,11 +65,12 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
         <CalendarModal
           closeModal={closeModal}
           slotInfo={selectedSlot}
-          cleaningDays={cleaningDays}
+          cleaningObjectsArray={Array.from(cleaningObjectsMap.values())}
           toggleCleaningEventLocally={toggleCleaningEvent}
-          saveInDB={saveCleaningEventsInDB}
+          saveInDB={!!cleaningEventsFromDB}
         />
       }
+      <CopyCleaningEventsButton events={cleaningDays} cleaningObjectsMap={cleaningObjectsMap} />
       <Calendar
         localizer={localizer}
         events={events}
