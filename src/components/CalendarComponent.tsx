@@ -11,14 +11,15 @@ import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
 import { useLocalStorageMap } from "@/hooks/useLocalStorageMap";
 import { slotInfoType } from "@/types/reactBigCalendar";
 import { CopyCleaningEventsButton } from "./CopyCleaningEventsButton";
-import { cleaningEvent } from "@/types/cleaningEvents";
+import { cleaningEvent as CleaningEventType } from "@/types/cleaningEvents";
 
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
 
-export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
+export const CalendarComponent = ({ events, cleaningEventsFromDB, localStorageKey }: {
   events: RbcReservation[],
-  cleaningEventsFromDB?: Set<string>,
+  cleaningEventsFromDB?: Map<string, CleaningEventType>,
+  localStorageKey: string,
 }) => {
   // States required by react-big-calendar component
   const [date, setDate] = useState(new Date());
@@ -29,8 +30,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
   // Variables needed by CalendarModal
   const saveCleaningEventsInDB = !!cleaningEventsFromDB;
-  const key = saveCleaningEventsInDB ? "cleaning_events" : "test_cleaning_events";
-  const [cleaningObjectsMap, toggleCleaningEvent, saveFromDB] = useLocalStorageMap<cleaningEvent>(key);
+  const [cleaningObjectsMap, toggleCleaningEvent, saveFromDB] = useLocalStorageMap<CleaningEventType>(localStorageKey);
     const cleaningDays = new Set(Array.from(cleaningObjectsMap.values()).map((object) => object?.date));
     console.log("cleaningDays: ", cleaningDays);
     console.log("cleaningObjectMap: ", cleaningObjectsMap);

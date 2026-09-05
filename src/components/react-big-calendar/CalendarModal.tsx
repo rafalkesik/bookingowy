@@ -33,13 +33,15 @@ export default function CalendarModal(
   const cleaningScheduled = cleaningDays.has(pickedDay);
   
   async function toggleCleaningEvent(action: "create" | "delete", formdata: FormData) {
-    saveInDB && await toggleCleaningEventInDB(pickedDay, action);
-    closeModal();
-    toggleCleaningEventLocally({
+    const newDayObject = {
       date: pickedDay,
-      days: Number(formdata.get('days')),
+      nights: Number(formdata.get('nights')),
       guests: Number(formdata.get('guests')),
-    });
+    }
+
+    saveInDB && await toggleCleaningEventInDB(newDayObject, action);
+    closeModal();
+    toggleCleaningEventLocally(newDayObject);
   }
 
   return (
@@ -66,7 +68,7 @@ export default function CalendarModal(
                   🧹 Sprzątanie zaplanowane
                 </p>
                 <p>
-                  Ilość dni: {pickedDayObject?.days}
+                  Ilość dni: {pickedDayObject?.nights}
                 </p>
                 <p>
                   Ilość gości: {pickedDayObject?.guests}
@@ -88,10 +90,10 @@ export default function CalendarModal(
                   action={toggleCleaningEvent.bind(null, "create")}
                   className="form mx-auto md:mx-10"
                 >
-                  <label htmlFor="days">Number of days</label>
+                  <label htmlFor="nights">Number of nights</label>
                   <input
-                    id="days"
-                    name="days"
+                    id="nights"
+                    name="nights"
                     type="number"
                     className="block mb-1"
                     required

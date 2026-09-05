@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function CalendarPage() {
+  const localStorageKey = "test_cleaning_events";
+
   return (
     <div className="page-background">
       <main className="max-w-5xl w-full flex">
@@ -23,6 +25,7 @@ export default async function CalendarPage() {
 
           <CalendarComponent
             events={SampleRbcEvents}
+            localStorageKey={localStorageKey}
           />
           
           <h2 className="text-2xl mt-10 mb-5 text-center md:text-start">

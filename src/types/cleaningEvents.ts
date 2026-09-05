@@ -1,5 +1,5 @@
 export interface cleaningEvent {
   date: string,
-  days: number,
+  nights: number,
   guests: number,
 }
