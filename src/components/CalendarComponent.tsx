@@ -16,10 +16,9 @@ import { cleaningEvent as CleaningEventType } from "@/types/cleaningEvents";
 dayjs.locale(polishLocale)
 const localizer = dayjsLocalizer(dayjs);
 
-export const CalendarComponent = ({ events, cleaningEventsFromDB, localStorageKey }: {
+export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   events: RbcReservation[],
   cleaningEventsFromDB?: Map<string, CleaningEventType>,
-  localStorageKey: string,
 }) => {
   // States required by react-big-calendar component
   const [date, setDate] = useState(new Date());
@@ -29,6 +28,8 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB, localStorageKe
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
   // Variables needed by CalendarModal
+  const localStorageKey = cleaningEventsFromDB ? "cleaning_events" : "test_cleaning_events";
+  
   const [
     cleaningObjectsMap, toggleCleaningEvent, saveFromDB
   ] = useLocalStorageMap<CleaningEventType>(localStorageKey);
