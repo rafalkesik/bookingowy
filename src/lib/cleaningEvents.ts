@@ -31,7 +31,7 @@ export async function deleteCleaningEventInDB(event: CleaningEventType) {
   })
 }
 
-export async function fetchCleaningEventsFromDB(key: string) {
+export async function fetchCleaningEventsFromDB() {
   let cleaningEventsDB: CleaningEventDBType[] = [];
 
   try {

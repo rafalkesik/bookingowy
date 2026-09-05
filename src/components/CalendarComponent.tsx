@@ -29,15 +29,17 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB, localStorageKe
   const [modalOn, setModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
   // Variables needed by CalendarModal
-  const saveCleaningEventsInDB = !!cleaningEventsFromDB;
-  const [cleaningObjectsMap, toggleCleaningEvent, saveFromDB] = useLocalStorageMap<CleaningEventType>(localStorageKey);
-    const cleaningDays = new Set(Array.from(cleaningObjectsMap.values()).map((object) => object?.date));
-    console.log("cleaningDays: ", cleaningDays);
-    console.log("cleaningObjectMap: ", cleaningObjectsMap);
+  const [
+    cleaningObjectsMap, toggleCleaningEvent, saveFromDB
+  ] = useLocalStorageMap<CleaningEventType>(localStorageKey);
+  const cleaningDays = new Set(
+    Array.from(cleaningObjectsMap.values())
+    .map((object) => object?.date)
+  );
   
   // If cleaning events from DB are passed, set them in local storage.
   useEffect(() => {
-    if (saveCleaningEventsInDB) {
+    if (!!cleaningEventsFromDB) {
       saveFromDB(cleaningEventsFromDB);
     }
   }, [cleaningEventsFromDB]);
@@ -64,7 +66,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB, localStorageKe
           slotInfo={selectedSlot}
           cleaningObjectsArray={Array.from(cleaningObjectsMap.values())}
           toggleCleaningEventLocally={toggleCleaningEvent}
-          saveInDB={saveCleaningEventsInDB}
+          saveInDB={!!cleaningEventsFromDB}
         />
       }
       <CopyCleaningEventsButton events={cleaningDays} cleaningObjectsMap={cleaningObjectsMap} />

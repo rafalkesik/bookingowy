@@ -18,7 +18,7 @@ export default async function MyCalendar() {
 
   const localStorageKey = "cleaning_events";
   const rbcHostexEvents = await getRbcEvents();
-  const cleaningEvents = await fetchCleaningEventsFromDB(localStorageKey);
+  const cleaningEvents = await fetchCleaningEventsFromDB();
   
   return (
     <div className="page-background">
