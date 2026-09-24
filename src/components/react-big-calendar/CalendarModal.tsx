@@ -40,7 +40,6 @@ export default function CalendarModal(
       notes: String(formdata.get('notes')) ?? '',
     }
 
-    // dodać notes do poniższych 2 funkcji:
     saveInDB && await toggleCleaningEventInDB(newDayObject, action);
     closeModal();
     toggleCleaningEventLocally(newDayObject);
