@@ -21,6 +21,7 @@ export async function createCleaningEventInDB(event: CleaningEventType) {
       date: dayjs.utc(event.date).toDate(),
       guests: event.guests,
       nights: event.nights,
+      notes: event.notes
     }
   });
 }
@@ -48,6 +49,7 @@ export async function fetchCleaningEventsFromDB() {
           date: dayjs(e.date).format("YYYY-MM-DD"),
           nights: e.nights,
           guests: e.guests,
+          notes: e.notes ? e.notes : ""
         }
       ]
     )

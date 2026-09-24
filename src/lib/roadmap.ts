@@ -33,7 +33,7 @@ const functionalities = [
       "✅ Po kliknięciu w dzień, pojawia się opcja usunięcia, lub dodania sprzątania.",
     ],
     niceToHave: [
-      "Dodać przycisk do kopiowania listy sprzątań do clipboard",
+      "✅ Dodać przycisk do kopiowania listy sprzątań do clipboard",
       "Dodać widok kalendarza z listą wszystkich sprzątań",
       "Sprzątanie ma się automatycznie zaplanować na dzień wymeldowania gościa",
     ]

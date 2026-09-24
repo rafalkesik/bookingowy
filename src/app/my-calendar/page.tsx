@@ -36,15 +36,11 @@ export default async function MyCalendar() {
         </h2>
         <p className="paragraph">
           Mój kalendarz przedstawia najświeższe
-          rezerwacje z systemu Hostex.
+          rezerwacje z systemu Hostex. Umożliwia też planowanie sprzątań.
         </p>
         <p className="paragraph mt-2">
           Niedługo możliwe będzie wyświetlenie szczegółów rezerawcji,
           oraz planowanie sprzątań i dostaw prania. 
-        </p>
-        <p className="paragraph mt-2">
-          Funkcjonalność planowania sprzątań jest na 
-          razie dostępna w testowym kalendarzu.
         </p>
       </main>
     </div>
