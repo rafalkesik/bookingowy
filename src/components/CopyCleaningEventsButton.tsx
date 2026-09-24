@@ -17,8 +17,17 @@ export const CopyCleaningEventsButton = ({
     );
 
     const text = Array.from(eventsInMonth.values()).map((object) => {
-      return object.date + ", " + object.nights.toString() + "dni, " + object.guests.toString() + "gości"
-    }).join("\n");
+      return (
+        object.date +
+        ", " +
+        object.nights.toString() +
+        "dni, " +
+        object.guests.toString() +
+        "gości" +
+        (object.notes ? `\n${object.notes}` : '') +
+        ";"
+      )
+    }).join("\n\n");
 
     navigator.clipboard.writeText(text);
   }

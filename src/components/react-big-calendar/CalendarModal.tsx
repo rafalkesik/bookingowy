@@ -37,6 +37,7 @@ export default function CalendarModal(
       date: pickedDay,
       nights: Number(formdata.get('nights')),
       guests: Number(formdata.get('guests')),
+      notes: String(formdata.get('notes')) ?? '',
     }
 
     saveInDB && await toggleCleaningEventInDB(newDayObject, action);
@@ -73,6 +74,9 @@ export default function CalendarModal(
                 <p>
                   Ilość gości: {pickedDayObject?.guests}
                 </p>
+                <p>
+                  Notatki: {pickedDayObject?.notes}
+                </p>
                 <form action={toggleCleaningEvent.bind(null, "delete")}>
                   <button
                     type="submit"
@@ -103,8 +107,15 @@ export default function CalendarModal(
                     id="guests"
                     name="guests"
                     type="number"
-                    className="block mb-3"
+                    className="block mb-1"
                     required
+                  />
+                  <label htmlFor="notes">Notes</label>
+                  <input
+                    id="notes"
+                    name="notes"
+                    type="text"
+                    className="block mb-3"
                   />
                   <button
                     type="submit"
