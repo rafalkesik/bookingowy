@@ -25,6 +25,18 @@ export default function CalendarModal(
 ) {
   const x = slotInfo?.box?.clientX ?? 0;
   const y = slotInfo?.box?.clientY ?? 0;
+  const modalX = ((x-50+436) > window.innerWidth) ?
+    ((window.innerWidth-436-50) < 10) ?
+      10 :
+      (window.innerWidth-436-50) :
+    (x-50);
+  const modalY = ((y+20+410) > window.innerHeight) ?
+    ((window.innerHeight-410-20) < 10) ?
+      10 :
+      (window.innerHeight-410-20) :
+    (y+20);
+  console.log("modalX: ", modalX);
+
   const pickedDay = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   const pickedDayObject = cleaningObjectsArray.filter(
     (object) => { return object?.date === pickedDay }
@@ -54,7 +66,7 @@ export default function CalendarModal(
       <div
         className="z-50 fixed py-5 border mx-5
                    shadow-lg rounded-md bg-white"
-        style={{ top: y+20, left: x-50 }}
+        style={{ top: modalY, left: modalX }}
         onClick={ (e) => e.stopPropagation() }
       >
         <div className="text-center">
