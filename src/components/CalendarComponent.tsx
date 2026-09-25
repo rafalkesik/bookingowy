@@ -2,6 +2,7 @@
 
 import { Calendar, View, Views, dayjsLocalizer } from "react-big-calendar";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useEffect, useState } from "react";
@@ -14,6 +15,7 @@ import { CopyCleaningEventsButton } from "./CopyCleaningEventsButton";
 import { cleaningEvent as CleaningEventType } from "@/types/cleaningEvents";
 
 dayjs.locale(polishLocale)
+dayjs.extend(utc)
 const localizer = dayjsLocalizer(dayjs);
 
 export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
