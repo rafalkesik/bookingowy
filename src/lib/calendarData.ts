@@ -1,6 +1,8 @@
 import getReservations from "@/lib/reservations";
 import { HostexReservation } from "@/types/hostex";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 export async function hostexReservations() {
   let reservations: HostexReservation[] = [];
@@ -29,11 +31,10 @@ export async function hostexReservations() {
 
 export async function getRbcEvents() {
   const reservations = await hostexReservations();
+  
   const rbcEvents = reservations.map((event) => ({
-    start: dayjs(event.startDate).toDate(),
-    end: dayjs(event.endDate)
-      .add(1, "day")
-      .toDate(),
+    start: dayjs.utc(event.startDate).toDate(),
+    end: dayjs.utc(event.endDate).toDate(),
     title: event.name + " " + event.platform
   }));
 
