@@ -104,6 +104,7 @@ form input {
     flex-direction: column;
     padding: 60 52 128;
     background-color: white;
+    width: 100%;
 
     @media (max-width: 450px) {
       padding: 60 15 128;
@@ -113,7 +114,6 @@ form input {
   .calendar-container {
     height: 520px;
     width: 100%;
-    
 
     @media (max-width: 770px) {
       height: 600px;

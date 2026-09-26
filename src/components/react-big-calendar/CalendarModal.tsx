@@ -14,6 +14,24 @@ type CalendarModalProps = {
   saveInDB?: boolean, // If true, the cleaning events should be stored in DB. For now, only MyCalendar stores them in DB, and TestCalendar only in LocalStorage.
 }
 
+function getClickLocation(slotInfo: slotInfoType | null) {
+  if (slotInfo?.box) {
+    return {
+      x: slotInfo.box.clientX,
+      y: slotInfo.box.clientY
+    }
+  }
+
+  if (slotInfo?.bounds) {
+    return {
+      x: slotInfo.bounds.x - window.scrollX,
+      y: slotInfo.bounds.y - window.scrollY
+    }
+  }
+
+  return { x: 0, y: 0 }
+}
+
 export default function CalendarModal(
   {
     closeModal,
@@ -23,8 +41,7 @@ export default function CalendarModal(
     saveInDB
   }: CalendarModalProps
 ) {
-  const x = slotInfo?.box?.clientX ?? 0;
-  const y = slotInfo?.box?.clientY ?? 0;
+  const { x, y } = getClickLocation(slotInfo);
   const modalX = ((x-50+436) > window.innerWidth) ?
     ((window.innerWidth-436-50) < 10) ?
       10 :
