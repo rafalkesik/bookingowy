@@ -42,15 +42,15 @@ export default function CalendarModal(
   }: CalendarModalProps
 ) {
   const { x, y } = getClickLocation(slotInfo);
-  const modalX = ((x-50+436) > window.innerWidth) ?
-    ((window.innerWidth-436-50) < 10) ?
+  const modalX = ((x+386) > window.innerWidth) ?
+    ((window.innerWidth-486) < 10) ?
       10 :
-      (window.innerWidth-436-50) :
+      (window.innerWidth-486) :
     (x-50);
-  const modalY = ((y+20+410) > window.innerHeight) ?
-    ((window.innerHeight-410-20) < 10) ?
+  const modalY = ((y+430) > window.innerHeight) ?
+    ((window.innerHeight-430) < 10) ?
       10 :
-      (window.innerHeight-410-20) :
+      (window.innerHeight-430) :
     (y+20);
   console.log("modalX: ", modalX);
 
