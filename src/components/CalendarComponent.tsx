@@ -50,9 +50,6 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   const handleSelectSlot = (
     slotInfo: slotInfoType
   ) => {
-    console.log("➡️ Slot selected. Action: ", slotInfo.action);
-    console.log("slotInfo: ", slotInfo);
-
     const oneDayClicked = slotInfo?.slots.length === 1;
     oneDayClicked && setModalOn(true);
     setSelectedSlot(slotInfo);
