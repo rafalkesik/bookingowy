@@ -26,7 +26,7 @@ const functionalities = [
   {
     subtitle: "funkcjonalnosć",
     title: "Sprzątanie",
-    body: "🔜 ✅ Dodać możliwość dodawania eventu sprzątania z poziomu \
+    body: " ✅ Dodać możliwość dodawania eventu sprzątania z poziomu \
            kalendarza.",
     mustHave: [
       "✅ Ikona sprzątania ma się wyświetlić po lewej od numeru dnia.",
@@ -34,9 +34,17 @@ const functionalities = [
     ],
     niceToHave: [
       "✅ Dodać przycisk do kopiowania listy sprzątań do clipboard",
-      "Dodać widok kalendarza z listą wszystkich sprzątań",
-      "Sprzątanie ma się automatycznie zaplanować na dzień wymeldowania gościa",
+      "❌ Dodać widok kalendarza z listą wszystkich sprzątań",
+      "❌ Sprzątanie ma się automatycznie zaplanować na dzień wymeldowania gościa",
     ]
+  },
+  {
+    subtitle: "funkcjonalnosć",
+    title: "Szczegóły rezerwacji",
+    body: "⚙️ Dodać możliwość wyświetlenia szczegółów rezerwacji",
+    mustHave: [
+      "Kliknięcie w rezerwację wyświetli modal ze szczegółami",
+    ],
   },
   {
     subtitle: "funkcjonalność",

@@ -50,7 +50,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   const handleSelectSlot = (
     slotInfo: slotInfoType
   ) => {
-    const oneDayClicked = slotInfo?.action === "click";
+    const oneDayClicked = slotInfo?.slots.length === 1;
     oneDayClicked && setModalOn(true);
     setSelectedSlot(slotInfo);
   }
@@ -78,6 +78,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
         events={events}
         date={date}
         view={view}
+        views={['month', 'week']}
         onNavigate={onNavigate}
         onView={onView}
         culture="pl"
@@ -92,8 +93,6 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
           month: "Miesiąc",
           week: "Tydzień",
           work_week: "Tydzień roboczy",
-          day: "Dzień",
-          agenda: "Agenda",
           today: "Dziś",
           previous: "Poprzedni",
           next: "Następny",

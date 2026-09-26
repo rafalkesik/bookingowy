@@ -23,8 +23,6 @@ export default function CalendarModal(
     saveInDB
   }: CalendarModalProps
 ) {
-  const x = slotInfo?.box?.clientX ?? 0;
-  const y = slotInfo?.box?.clientY ?? 0;
   const pickedDay = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   const pickedDayObject = cleaningObjectsArray.filter(
     (object) => { return object?.date === pickedDay }
@@ -48,20 +46,19 @@ export default function CalendarModal(
   return (
     <div
       className="z-40 fixed inset-0 bg-gray-600/0
-                 overflow-y-auto h-full w-full"
+                 overflow-y-auto h-full w-full flex"
       onClick={closeModal}
     >
       <div
-        className="z-50 fixed py-5 border mx-5
-                   shadow-lg rounded-md bg-white"
-        style={{ top: y+20, left: x-50 }}
+        className="z-50 py-5 border shadow-lg rounded-md
+                 bg-white w-fit mx-auto my-auto"
         onClick={ (e) => e.stopPropagation() }
       >
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900">
             { pickedDay }
           </h1>
-          <div className="mt-2 px-7 pb-4">
+          <div className="mt-2 px-7 pb-4 max-w-60 md:max-w-96">
             {
               cleaningScheduled ?
               <>
@@ -92,7 +89,7 @@ export default function CalendarModal(
                 </p>
                 <form
                   action={toggleCleaningEvent.bind(null, "create")}
-                  className="form mx-auto md:mx-10"
+                  className="form mx-auto max-w-44 md:mx-5 md:max-w-72"
                 >
                   <label htmlFor="nights">Number of nights</label>
                   <input
