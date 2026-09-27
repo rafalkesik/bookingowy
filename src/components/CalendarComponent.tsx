@@ -7,7 +7,7 @@ import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
-import CalendarModal from "./react-big-calendar/CalendarModal";
+import CleaningModal from "./react-big-calendar/cleaningModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
 import { useLocalStorageMap } from "@/hooks/useLocalStorageMap";
 import { slotInfoType } from "@/types/reactBigCalendar";
@@ -27,9 +27,9 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
   const [view, setView] = useState<View>(Views.MONTH);
   const onNavigate = useCallback((newDate: Date) => setDate(newDate), []);
   const onView = useCallback((newView: View) => setView(newView), []);
-  const [modalOn, setModalOn] = useState<boolean>(false);
+  const [cleaningModalOn, setCleaningModalOn] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<slotInfoType | null>(null);
-  // Variables needed by CalendarModal
+  // Variables needed by CleaningModal
   const localStorageKey = cleaningEventsFromDB ? "cleaning_events" : "test_cleaning_events";
   
   const [
@@ -51,21 +51,21 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
     slotInfo: slotInfoType
   ) => {
     const oneDayClicked = slotInfo?.slots.length === 1;
-    oneDayClicked && setModalOn(true);
+    oneDayClicked && setCleaningModalOn(true);
     setSelectedSlot(slotInfo);
   }
 
-  const closeModal = () => {
-    setModalOn(false);
+  const closeCleaningModal = () => {
+    setCleaningModalOn(false);
     setSelectedSlot(null);
   }
 
   return (
     <div className="calendar-container">
       {
-        modalOn &&
-        <CalendarModal
-          closeModal={closeModal}
+        cleaningModalOn &&
+        <CleaningModal
+          closeCleaningModal={closeCleaningModal}
           slotInfo={selectedSlot}
           cleaningObjectsArray={Array.from(cleaningObjectsMap.values())}
           toggleCleaningEventLocally={toggleCleaningEvent}

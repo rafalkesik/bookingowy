@@ -6,22 +6,22 @@ import { cleaningEvent } from "@/types/cleaningEvents";
 
 dayjs.locale(pl);
 
-type CalendarModalProps = {
-  closeModal: () => void,
+type cleaningModalProps = {
+  closeCleaningModal: () => void,
   slotInfo: slotInfoType | null,
   cleaningObjectsArray: cleaningEvent[],
   toggleCleaningEventLocally: (item: cleaningEvent) => void,
   saveInDB?: boolean, // If true, the cleaning events should be stored in DB. For now, only MyCalendar stores them in DB, and TestCalendar only in LocalStorage.
 }
 
-export default function CalendarModal(
+export default function CleaningModal(
   {
-    closeModal,
+    closeCleaningModal,
     slotInfo,
     cleaningObjectsArray,
     toggleCleaningEventLocally,
     saveInDB
-  }: CalendarModalProps
+  }: cleaningModalProps
 ) {
   const pickedDay = dayjs(slotInfo?.start).format("YYYY-MM-DD");
   const pickedDayObject = cleaningObjectsArray.filter(
@@ -39,7 +39,7 @@ export default function CalendarModal(
     }
 
     saveInDB && await toggleCleaningEventInDB(newDayObject, action);
-    closeModal();
+    closeCleaningModal();
     toggleCleaningEventLocally(newDayObject);
   }
 
@@ -47,7 +47,7 @@ export default function CalendarModal(
     <div
       className="z-40 fixed inset-0 bg-gray-600/0
                  overflow-y-auto h-full w-full flex"
-      onClick={closeModal}
+      onClick={closeCleaningModal}
     >
       <div
         className="z-50 py-5 border shadow-lg rounded-md
@@ -129,7 +129,7 @@ export default function CalendarModal(
                          text-base font-medium rounded-md shadow-sm
                          hover:bg-gray-400 focus:outline-none
                          focus:ring-2 focus:ring-gray-300"
-              onClick={closeModal}
+              onClick={closeCleaningModal}
             >
               Zamknij
             </button>
