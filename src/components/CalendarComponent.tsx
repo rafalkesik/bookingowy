@@ -7,7 +7,7 @@ import polishLocale from "dayjs/locale/pl"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useCallback, useEffect, useState } from "react";
 import { RbcReservation } from "@/types/hostex";
-import CleaningModal from "./react-big-calendar/cleaningModal";
+import CleaningModal from "./react-big-calendar/CleaningModal";
 import CustomDateHeader from "./react-big-calendar/CustomDateHeader"
 import { useLocalStorageMap } from "@/hooks/useLocalStorageMap";
 import { slotInfoType } from "@/types/reactBigCalendar";
