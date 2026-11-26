@@ -60,6 +60,10 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
     setSelectedSlot(null);
   }
 
+  const handleSelectEvent = (calendarEvent: Object) => {
+    console.log("calendarEvent selected: ", calendarEvent);
+  }
+
   return (
     <div className="calendar-container">
       {
@@ -84,6 +88,7 @@ export const CalendarComponent = ({ events, cleaningEventsFromDB }: {
         culture="pl"
         selectable={true}
         onSelectSlot={handleSelectSlot}
+        onSelectEvent={handleSelectEvent}
         components={{
           month: {
             dateHeader: (props) => <CustomDateHeader {...props} cleaningDays={cleaningDays} />
